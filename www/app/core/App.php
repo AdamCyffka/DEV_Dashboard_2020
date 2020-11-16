@@ -22,18 +22,18 @@ class App{
         
         //setting the langauge to default language if not specified.
 
-        if($req != NULL && file_exists('../app/languages/' . $req[0])){
+        if($req != NULL && file_exists('./app/languages/' . $req[0])){
             define('LANGUAGE', array_shift($req));                    
         }else{
             define('LANGUAGE', $this->language);
         }
 
-        if(file_exists('../app/controllers/' . $req[0] . '.php')){
+        if(file_exists('./app/controllers/' . $req[0] . '.php')){
             $this->controller = $req[0];
             unset($req[0]);
         }    
 
-        require_once '../app/controllers/' . $this->controller . '.php';
+        require_once './app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
         if(isset($req[1])){

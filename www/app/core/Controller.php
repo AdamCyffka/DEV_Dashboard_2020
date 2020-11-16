@@ -8,7 +8,7 @@ class Controller{
     */
 
     public function model($model){
-            require_once '../app/models/Session.php';
+            require_once './app/models/Session.php';
             global $loggedUser;
             $session = new Session;
             $loggedUser = $session->checkLogin();
@@ -24,7 +24,7 @@ class Controller{
                 header('Location: ' . URL . '/' . LANGUAGE .'/home/index');
             }
 
-            require_once '../app/models/' . $model . '.php';
+            require_once './app/models/' . $model . '.php';
             return new $model();
     }
 
@@ -43,22 +43,22 @@ class Controller{
         * in the language directory
         */
         if(!isset($data['lang']['main'])){
-            require_once("../app/languages/" . LANGUAGE . "/main.php");
+            require_once("./app/languages/" . LANGUAGE . "/main.php");
             /* $lang is an array that is defined in the language file. */
             $data['lang']['main'] = $lang;
          }
  
         $data['view'] = $view;
         if(!isset($data['lang'][$view])){
-           require_once("../app/languages/" . LANGUAGE . "/". $view .".php");
+           require_once("./app/languages/" . LANGUAGE . "/". $view .".php");
             /* $lang is an array that is defined in the language file. */
             $data['lang'][$view] = $lang;
         }
 
         //including the header, the view and the footer    
-        require_once '../app/views/layout/header.php';
-        require_once '../app/views/' . $view . '.php';
-        require_once '../app/views/layout/footer.php';
+        require_once './app/views/layout/header.php';
+        require_once './app/views/' . $view . '.php';
+        require_once './app/views/layout/footer.php';
     }
 
 }
