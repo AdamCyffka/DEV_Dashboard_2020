@@ -37,20 +37,21 @@ if (ENVIRONMENT == 'development' || ENVIRONMENT == 'dev') {
  * The final, auto-detected URL (build via the segments above). If you don't want to use auto-detection,
  * then replace this line with full URL (and sub-folder) and a trailing slash.
  */
-define('URL_PUBLIC_FOLDER', '');
+define('URL_PUBLIC_FOLDER', './public');
 define('URL_PROTOCOL', '//');
 define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
 define('URL_SUB_FOLDER', str_replace(URL_PUBLIC_FOLDER, '', dirname($_SERVER['SCRIPT_NAME'])));
 define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
 
+echo URL;
 /**
  * Configuration for: Database
  * This is the place where you define your database credentials, database type etc.
  */
 define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'msystem');
-define('DB_USER', 'msys');
-define('DB_PASS', 'root');
+define('DB_NAME', 'test_db');
+define('DB_USER', 'devuser');
+define('DB_PASS', 'devpass');
 
 define('DB_CHARSET', 'utf8');
