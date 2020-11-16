@@ -18,7 +18,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./php/:/var/www/html/
+      - ./www/public:/var/www/html/
     ports:
       - "8080:80"
     stdin_open: true
