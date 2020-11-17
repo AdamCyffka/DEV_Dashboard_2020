@@ -12,6 +12,7 @@ services:
             - default
     db:
         image: mysql
+        command: --default-authentication-plugin=mysql_native_password
         ports: 
             - "3306:3306"
         environment:
@@ -21,6 +22,7 @@ services:
             MYSQL_ROOT_PASSWORD: test
         volumes:
             - ./dump:/docker-entrypoint-initdb.d
+            - ./conf/my.cnf:/etc/mysql/my.cnf
             - persistent:/var/lib/mysql
         networks:
             - default

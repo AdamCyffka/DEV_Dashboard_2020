@@ -49,9 +49,9 @@ echo URL;
  * This is the place where you define your database credentials, database type etc.
  */
 define('DB_TYPE', 'mysql');
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'test_db');
-define('DB_USER', 'devuser');
-define('DB_PASS', 'devpass');
+define('DB_HOST', 'db');
+define('DB_NAME', 'myDb');
+define('DB_USER', 'root');
+define('DB_PASS', 'test');
 
 define('DB_CHARSET', 'utf8');

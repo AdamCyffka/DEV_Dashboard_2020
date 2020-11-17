@@ -16,17 +16,17 @@ class Database extends Common {
 
     private function openDatabaseConnection()
     {
-        try {
-            $this->db = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET, DB_USER, DB_PASS);
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            die;
-        }    
+        $this->db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        if ($this->db->connect_errno) {
+            echo "Failed to connect to MySQL: " . $this->db->connect_error;
+            die();
+        }
+        $this->db->set_charset(DB_CHARSET);     
     }
 
     private function closeDatabaseConnection()
     {
-        $this->db = null  ;
+        $this->db->close();    
     }
 
 }
