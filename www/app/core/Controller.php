@@ -1,6 +1,6 @@
 <?php 
 
-class Controller{
+class Controller {
 
     /* model function called to create an object of a model class
     * it checks user login first if not login it'll show login page
