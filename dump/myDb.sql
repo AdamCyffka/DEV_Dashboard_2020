@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : mer. 18 nov. 2020 à 14:03
+-- Généré le : mer. 18 nov. 2020 à 15:26
 -- Version du serveur :  8.0.22
 -- Version de PHP : 7.4.11
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `myDb`
 --
+CREATE DATABASE IF NOT EXISTS `myDb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `myDb`;
 
 -- --------------------------------------------------------
 
