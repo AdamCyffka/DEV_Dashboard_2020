@@ -16,7 +16,7 @@
   <div class="container">
     <div class="row mt-5">
       <div class="col-md-6 m-auto">
-        <form class="text-center border border-grey p-5 rounded" action="/users/register" method="POST">
+        <form class="text-center border border-grey p-5 rounded" action="register.php" method="POST">
 
           <p class="h4 mb-4">Register</p>
 
@@ -31,24 +31,21 @@
             </div>
           </div>
 
-          <input type="email" id="email" name="email" class="form-control mb-4" placeholder="Enter Email"
-            value="<%= typeof email != 'undefined' ? email : '' %>" />
+          <input type="email" id="email" name="email" class="form-control mb-4" placeholder="Enter Email"/>
 
-          <input type="password" id="password" name="password" class="form-control" placeholder="Create Password"
-            value="<%= typeof password != 'undefined' ? password : '' %>" />
+          <input type="password" id="password" name="password" class="form-control" placeholder="Create Password"/>
           <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
             At least 6 characters
           </small>
 
-          <input type="password" id="password2" name="password2" class="form-control mb-4"
-            placeholder="Confirm Password" value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
+          <input type="password" id="password2" name="password2" class="form-control mb-4" placeholder="Confirm Password"/>
 
           <button type="submit" class="btn btn-info my-4 btn-block">
             Register
           </button>
 
           <p>Already a member?
-            <a href="/users/login">Login</a>
+            <a href="login.php">Login</a>
           </p>
 
           <p>or sign up with:</p>
