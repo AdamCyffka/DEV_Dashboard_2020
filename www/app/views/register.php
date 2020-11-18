@@ -1,3 +1,5 @@
+<?php include('../server/server.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,22 +20,23 @@
       <div class="col-md-6 m-auto">
         <form class="text-center border border-grey p-5 rounded" action="register.php" method="POST">
 
+          <!-- display validation errors here -->
+          <?php include('errors.php') ?>
+
           <p class="h4 mb-4">Register</p>
 
           <div class="form-row mb-4">
             <div class="col">
-              <!-- First name -->
-              <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
+              <input type="text" id="defaultRegisterFormFirstName" name="first_name" class="form-control" placeholder="First name">
             </div>
             <div class="col">
-              <!-- Last name -->
-              <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
+              <input type="text" id="defaultRegisterFormLastName"name="last_name" class="form-control" placeholder="Last name">
             </div>
           </div>
 
           <input type="email" id="email" name="email" class="form-control mb-4" placeholder="Enter Email"/>
 
-          <input type="password" id="password" name="password" class="form-control" placeholder="Create Password"/>
+          <input type="password" id="password" name="password1" class="form-control" placeholder="Create Password"/>
           <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
             At least 6 characters
           </small>
