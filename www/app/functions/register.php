@@ -1,22 +1,17 @@
 <?php
-  $first_name = "";
-  $last_name = "";
+
+  require_once('config.php');
+
+  $username = "";
+  $email = "";
   $errors = array();
 
-  // connect to the database
-  $db = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-
-  if ($db -> connect_errno) {
-    echo "Failed to connect to MySQL: " . $db -> connect_error;
-    exit();
-  }
-
   if (isset($_POST['register'])) {
-    $first_name = $db->real_escape_string($_POST['first_name']);
-    $last_name = $db->real_escape_string($_POST['last_name']);
-    $email = $db->real_escape_string($_POST['email']);
-    $password1 = $db->real_escape_string($_POST['password1']);
-    $password2 = $db->real_escape_string($_POST['password2']);
+    $first_name = mysqli_real_escape_string($db, $_POST['first_name']);
+    $last_name = mysqli_real_escape_string($db, $_POST['last_name']);
+    $email = mysqli_real_escape_string($db, $_POST['email']);
+    $password1 = mysqli_real_escape_string($db, $_POST['password1']);
+    $password2 = mysqli_real_escape_string($db, $_POST['password2']);
 
     // ensure that form fields are filled properly
     if (empty($first_name)) {
@@ -37,14 +32,12 @@
     }
 
     // if there are no erros, save user to database
-    if (count($erros) == 0) {
+    if (count($errors) == 0) {
       $password = md5($password1); // encrypt password before storing in db (security)
       $sql = "INSERT INTO user (firstname, lastname, email, password)
               VALUES ('$first_name', '$last_name', '$email,', '$password')";
-    mysqli_query($db, $sql);
+      mysqli_query($db, $sql);
     }
   }
-
-
 
 ?>
