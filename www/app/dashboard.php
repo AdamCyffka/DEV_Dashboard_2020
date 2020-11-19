@@ -1,6 +1,14 @@
-<!DOCTYPE html>
+<?php include('functions/register.php');
 
-<html>
+  // if user is not logged in, they cannot access this page
+  if (empty($_SESSION['username'])) {
+    header('location: login.php');
+  }
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
   <link rel="stylesheet" type="text/css" href="dashboard.css">
@@ -16,7 +24,7 @@
           class="mr-3 rounded-circle img-thumbnail shadow-sm">
         <div class="media-body">
           <h4 class="m-0">Jason Doe</h4>
-          <p class="font-weight-light text-muted mb-0">Web developer</p>
+          <a href="login.php?logout='1'" class="font-weight-light text-muted mb-0">Se déco</a>
         </div>
       </div>
     </div>

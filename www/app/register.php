@@ -25,23 +25,16 @@
 
           <p class="h4 mb-4">Register</p>
 
-          <div class="form-row mb-4">
-            <div class="col">
-              <input type="text" id="defaultRegisterFormFirstName" name="first_name" class="form-control" placeholder="First name">
-            </div>
-            <div class="col">
-              <input type="text" id="defaultRegisterFormLastName"name="last_name" class="form-control" placeholder="Last name">
-            </div>
-          </div>
+          <input type="text" id="username" name="username" class="form-control mb-4" placeholder="Enter Username" value="<?php echo $username; ?>" required/>
 
-          <input type="email" id="email" name="email" class="form-control mb-4" placeholder="Enter Email"/>
+          <input type="email" id="email" name="email" class="form-control mb-4" placeholder="Enter Email" value="<?php echo $email; ?>" required/>
 
-          <input type="password" id="password" name="password1" class="form-control" placeholder="Create Password"/>
+          <input type="password" id="password" name="password1" class="form-control" placeholder="Create Password" required/>
           <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
             At least 6 characters
           </small>
 
-          <input type="password" id="password2" name="password2" class="form-control mb-4" placeholder="Confirm Password"/>
+          <input type="password" id="password2" name="password2" class="form-control mb-4" placeholder="Confirm Password" required/>
 
           <button type="submit" name="register" class="btn btn-info my-4 btn-block">
             Register

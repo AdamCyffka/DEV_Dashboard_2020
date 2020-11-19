@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+<?php include('functions/register.php'); ?>
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,13 +19,16 @@
             <div class="col-md-6 m-auto">
                 <form class="text-center border border-grey p-5 rounded" action="login.php" method="POST">
 
+                    <!-- display validation errors here -->
+                    <?php include ('functions/errors.php'); ?>
+
                     <p class="h4 mb-4">Login</p>
 
-                    <input type="email" id="email" name="email" class="form-control mb-4" placeholder="E-mail" />
+                    <input type="text" id="username" name="username" class="form-control mb-4" placeholder="Username" required/>
 
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" />
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required/>
 
-                    <button type="submit" class="btn btn-info btn-block my-4">Login</button>
+                    <button type="submit" name="login" class="btn btn-info btn-block my-4">Login</button>
 
                     <p>Not a member?
                         <a href="register.php">Register</a>
