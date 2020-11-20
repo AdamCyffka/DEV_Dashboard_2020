@@ -1,4 +1,4 @@
-<?php include('../functions/register.php'); ?>
+<?php include('../scripts/register.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,7 @@
         <form class="text-center border border-grey p-5 rounded" action="register.php" method="POST">
 
           <!-- display validation errors here -->
-          <?php include ('../functions/errors.php'); ?>
+          <?php include ('../scripts/errors.php'); ?>
 
           <p class="h4 mb-4">Register</p>
 

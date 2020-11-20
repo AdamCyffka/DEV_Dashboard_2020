@@ -1,4 +1,4 @@
-<?php include('../functions/register.php'); ?>
+<?php include('../scripts/register.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <link rel="stylesheet" type="text/css" href="../public/css/dashboard.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../public/css/dashboard.css">
@@ -21,11 +22,11 @@
                 <form class="text-center border border-grey p-5 rounded" action="login.php" method="POST">
 
                     <!-- display validation errors here -->
-                    <?php include ('../functions/errors.php'); ?>
+                    <?php include ('../scripts/errors.php'); ?>
 
                     <p class="h4 mb-4">Login</p>
 
-                    <input type="text" id="username" name="username" class="form-control mb-4" placeholder="Username" required/>
+                    <input type="text" id="username" name="username" class="form-control mb-4" placeholder="Username" value="<?php echo $username; ?>" required/>
 
                     <input type="password" id="password" name="password" class="form-control" placeholder="Password" required/>
 
