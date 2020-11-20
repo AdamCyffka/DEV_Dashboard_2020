@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : ven. 20 nov. 2020 à 14:45
+-- Généré le : ven. 20 nov. 2020 à 16:46
 -- Version du serveur :  8.0.22
 -- Version de PHP : 7.4.11
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `myDb`
 --
+CREATE DATABASE IF NOT EXISTS `myDb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `myDb`;
 
 -- --------------------------------------------------------
 
@@ -50,6 +52,18 @@ CREATE TABLE `user` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `user_data`
+--
+
+CREATE TABLE `user_data` (
+  `user` int NOT NULL,
+  `services` text,
+  `widgets` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `widget`
 --
 
@@ -59,16 +73,6 @@ CREATE TABLE `widget` (
   `name` tinytext NOT NULL,
   `description` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Déchargement des données de la table `user`
---
-
-INSERT INTO `user` (`id`, `username`, `email`, `password`, `date`) VALUES
-(3, 'Cyffka', 'adam.cyffka@epitech.eu,', '0a5b3913cbc9a9092311630e869b4442', '2020-11-19 14:38:39'),
-(4, 'dadad', 'test@test.com,', '0a5b3913cbc9a9092311630e869b4442', '2020-11-19 15:02:44'),
-(5, 'Cyffka', 'adam.cyffka@epitech.eu,', '0a5b3913cbc9a9092311630e869b4442', '2020-11-19 15:21:15'),
-(6, 'dadada', 'adda@gmail.com,', '44d9dbb60b6c2c24922cd62d249412f9', '2020-11-19 15:25:04');
 
 --
 -- Index pour les tables déchargées
@@ -85,6 +89,12 @@ ALTER TABLE `service`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `user_data`
+--
+ALTER TABLE `user_data`
+  ADD PRIMARY KEY (`user`);
 
 --
 -- Index pour la table `widget`
@@ -106,7 +116,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `widget`
