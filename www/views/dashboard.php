@@ -1,23 +1,15 @@
-<?php include('../scripts/register.php');
-
+<?php
+  include('../scripts/register.php');
+  
   // if user is not logged in, they cannot access this page
   if (empty($_SESSION['username'])) {
     header('location: login.php');
+  } else {
+    include('../scripts/dashboard.php');
   }
-?>
 
-<?php
-  $username = (isset($_POST['username'])) ? $_POST['username'] : "No one";
-  $services = array();
+  $username = $_SESSION['username'];
 
-  if ($_GET['services']) {
-    $services = explode(' ', $_GET['services']);
-  }  
-
-  function updateServices($index) {
-    $services[$index] = ($services[$index] == 0) ? 1 : 0;
-    return "?services=".implode('+', $services);
-  }    
 ?>
 
 
