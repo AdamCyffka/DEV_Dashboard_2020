@@ -1,6 +1,6 @@
 <?php
 
-  require_once('dbConfig.php');
+  require_once('dbconfig.php');
 
   $username = "";
   $email = "";
@@ -54,4 +54,5 @@
     unset($_SESSION['username']);
     header('location: ../views/login.php');
   }
+
 ?>

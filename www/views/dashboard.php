@@ -7,6 +7,10 @@
   } else {
     include('../scripts/dashboard.php');
   }
+  if(!isset($_SESSION['access_token'])){
+    header("Location: login.php");
+    exit();
+  }
 
   $username = $_SESSION['username'];
 ?>

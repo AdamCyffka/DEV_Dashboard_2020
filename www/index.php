@@ -1,10 +1,10 @@
 <?php
 
-include('scripts/register.php');
+  include('scripts/register.php');
 
-if (isset($_SESSION['username'])) {
-  header('location: views/dashboard.php');
-}
+  if (isset($_SESSION['username'])) {
+    header('location: views/dashboard.php');
+  }
 
 ?>
 
