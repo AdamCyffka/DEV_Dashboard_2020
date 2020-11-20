@@ -2,12 +2,12 @@
 
 require_once('dbConfig.php');
 
-session_start();
-
 $username = "";
 $email = "";
+$id = "";
 $errors = array();
 
+// register user from register page
 if (isset($_POST['register'])) {
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -25,7 +25,6 @@ if (isset($_POST['register'])) {
             VALUES ('$username', '$email,', '$password')";
     mysqli_query($db, $sql);
     $_SESSION['username'] = $username;
-    $_SESSION['success'] = "Succès";
     header('location: ../views/dashboard.php');
   }
 }
@@ -41,8 +40,8 @@ if (isset($_POST['login'])) {
     $result = mysqli_query($db, $query);
     if (mysqli_num_rows($result) == 1) {
       // log user in
+      $_SESSION['id'] = $id;
       $_SESSION['username'] = $username;
-      $_SESSION['success'] = "Succès";
       header('location: ../views/dashboard.php'); // redirect to dashboard
     } else {
       array_push($errors, "Wrong username/password combination");

@@ -9,7 +9,6 @@
   }
 
   $username = $_SESSION['username'];
-
 ?>
 
 
