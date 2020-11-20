@@ -1,7 +1,6 @@
-<?php require_once 'app/config.php'; ?>
+<?php require_once('functions/config.php'); ?>
 
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -21,8 +20,8 @@
         <div class="text-center border border-grey p-5 rounded">
           <h1>Welcome to the Dashboard</h1>
           <p>You can start by creating an account or login.</p>
-          <a href="app/views/register.php" class="btn btn-primary btn-block my-4"><span class="fa fa-user-plus"></span> Sign Up</a>
-          <a href="app/views/login.php" class="btn btn-success btn-block my-4"><span class="fa fa-sign-in"></span> Login</a>
+          <a href="views/register.php" class="btn btn-primary btn-block my-4"><span class="fa fa-user-plus"></span> Sign Up</a>
+          <a href="views/login.php" class="btn btn-success btn-block my-4"><span class="fa fa-sign-in"></span> Login</a>
         </div>
         <small class="form-text text-muted text-center">
           Created by Adam Cyffka & Valentin Masson

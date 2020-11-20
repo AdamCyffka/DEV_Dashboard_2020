@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `myDb`
 --
-CREATE DATABASE IF NOT EXISTS `myDb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `myDb`;
 
 -- --------------------------------------------------------
 
@@ -43,8 +41,7 @@ CREATE TABLE `service` (
 
 CREATE TABLE `user` (
   `id` int NOT NULL,
-  `firstname` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `lastname` tinytext,
+  `username` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `email` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -62,6 +59,16 @@ CREATE TABLE `widget` (
   `name` tinytext NOT NULL,
   `description` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `date`) VALUES
+(3, 'Cyffka', 'adam.cyffka@epitech.eu,', '0a5b3913cbc9a9092311630e869b4442', '2020-11-19 14:38:39'),
+(4, 'dadad', 'test@test.com,', '0a5b3913cbc9a9092311630e869b4442', '2020-11-19 15:02:44'),
+(5, 'Cyffka', 'adam.cyffka@epitech.eu,', '0a5b3913cbc9a9092311630e869b4442', '2020-11-19 15:21:15'),
+(6, 'dadada', 'adda@gmail.com,', '44d9dbb60b6c2c24922cd62d249412f9', '2020-11-19 15:25:04');
 
 --
 -- Index pour les tables déchargées

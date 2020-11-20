@@ -1,16 +1,25 @@
+<?php include('../functions/register.php');
+
+  // if user is not logged in, they cannot access this page
+  if (empty($_SESSION['username'])) {
+    header('location: login.php');
+  }
+?>
+
 <?php
   $username = (isset($_POST['username'])) ? $_POST['username'] : "No one";
   $services = array();
 
   if ($_GET['services']) {
     $services = explode(' ', $_GET['services']);
-  }
+  }  
 
   function updateServices($index) {
     $services[$index] = ($services[$index] == 0) ? 1 : 0;
     return "?services=".implode('+', $services);
-  }
+  }    
 ?>
+
 
 <!DOCTYPE html>
 
@@ -37,7 +46,7 @@
             $html = "<h4 class=\"m-0\">".$username."</h4>";
             echo $html;
           ?>
-          <a class="font-weight-light text-muted mb-0">Disconnect</a>
+          <a href="login.php?logout='1'" class="font-weight-light text-muted mb-0">Disconnect</a>
         </div>
       </div>
     </div>
