@@ -1,4 +1,12 @@
-<?php include('../scripts/register.php'); ?>
+<?php
+
+include('../scripts/register.php');
+
+if (isset($_SESSION['username'])) {
+  header('location: dashboard.php');
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
