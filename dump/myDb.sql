@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : mer. 18 nov. 2020 à 15:26
+-- Généré le : ven. 20 nov. 2020 à 14:45
 -- Version du serveur :  8.0.22
 -- Version de PHP : 7.4.11
 
@@ -26,6 +26,18 @@ USE `myDb`;
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `service`
+--
+
+CREATE TABLE `service` (
+  `id` int NOT NULL,
+  `name` tinytext NOT NULL,
+  `client_id` tinytext
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `user`
 --
 
@@ -38,9 +50,28 @@ CREATE TABLE `user` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `widget`
+--
+
+CREATE TABLE `widget` (
+  `id` int NOT NULL,
+  `service_id` int NOT NULL,
+  `name` tinytext NOT NULL,
+  `description` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `user`
@@ -49,14 +80,32 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `widget`
+--
+ALTER TABLE `widget`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `service`
+--
+ALTER TABLE `service`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `widget`
+--
+ALTER TABLE `widget`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
