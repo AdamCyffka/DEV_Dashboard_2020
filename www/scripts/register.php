@@ -4,9 +4,10 @@ require_once('dbConfig.php');
 
 $username = "";
 $email = "";
+$id = "";
 $errors = array();
 
-// log user from login page
+// register user from register page
 if (isset($_POST['register'])) {
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -39,6 +40,7 @@ if (isset($_POST['login'])) {
     $result = mysqli_query($db, $query);
     if (mysqli_num_rows($result) == 1) {
       // log user in
+      $_SESSION['id'] = $id;
       $_SESSION['username'] = $username;
       header('location: ../views/dashboard.php'); // redirect to dashboard
     } else {

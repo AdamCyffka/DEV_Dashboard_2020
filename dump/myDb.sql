@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : ven. 20 nov. 2020 à 16:46
+-- Généré le : ven. 20 nov. 2020 à 17:28
 -- Version du serveur :  8.0.22
 -- Version de PHP : 7.4.11
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `myDb`
 --
-CREATE DATABASE IF NOT EXISTS `myDb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `myDb`;
 
 -- --------------------------------------------------------
 
@@ -43,6 +41,8 @@ CREATE TABLE `service` (
 
 CREATE TABLE `user` (
   `id` int NOT NULL,
+  `oauth_provider` varchar(255) DEFAULT NULL,
+  `oauth_uid` varchar(255) DEFAULT NULL,
   `username` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `email` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,

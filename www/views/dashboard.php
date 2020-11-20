@@ -12,12 +12,12 @@
 
   if ($_GET['services']) {
     $services = explode(' ', $_GET['services']);
-  }  
+  }
 
   function updateServices($index) {
     $services[$index] = ($services[$index] == 0) ? 1 : 0;
     return "?services=".implode('+', $services);
-  }    
+  }
 ?>
 
 
