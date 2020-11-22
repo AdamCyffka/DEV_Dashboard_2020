@@ -6,6 +6,7 @@
   $email = "";
   $errors = array();
 
+  // register user
   if (isset($_POST['register'])) {
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -28,7 +29,7 @@
     }
   }
 
-  // log user from login page
+  // log user
   if (isset($_POST['login'])) {
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
@@ -52,6 +53,8 @@
   if (isset($_GET['logout'])) {
     session_destroy();
     unset($_SESSION['username']);
+    unset($_SESSION['userData']);
+    unset($_SESSION['access_token']);
     header('location: ../views/login.php');
   }
 

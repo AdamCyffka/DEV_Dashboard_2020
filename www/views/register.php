@@ -1,10 +1,13 @@
 <?php
 
-include('../scripts/register.php');
+  require_once('../scripts/fbconfig.php');
+  require_once('../scripts/register.php');
 
-if (isset($_SESSION['username'])) {
-  header('location: dashboard.php');
-}
+  if (isset($_SESSION['username'])) {
+    header('location: dashboard.php');
+  }
+
+  $loginUrl = $fb->getRedirectLoginHelper()->getLoginUrl("http://localhost:8080/scripts/fbconfig.php")
 
 ?>
 
@@ -54,8 +57,8 @@ if (isset($_SESSION['username'])) {
 
           <p>or sign up with:</p>
 
-          <a href="/auth/facebook" class="mx-2" role="button"><i class="fa fa-facebook-f light-blue-text"></i></a>
-          <a href="/auth/google" class="mx-2" role="button"><i class="fa fa-google light-blue-text"></i></a>
+          <a href="<?php echo htmlspecialchars($loginUrl); ?>" class="mx-2" role="button"><i class="fa fa-facebook-f light-blue-text"></i></a>
+          <!-- <a href="/auth/google" class="mx-2" role="button"><i class="fa fa-google light-blue-text"></i></a> -->
 
         </form>
       </div>

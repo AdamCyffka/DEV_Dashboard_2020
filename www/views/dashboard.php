@@ -1,18 +1,23 @@
 <?php
-  include('../scripts/register.php');
+  require_once('../scripts/register.php');
   
-  // if user is not logged in, they cannot access this page
-  if (empty($_SESSION['username'])) {
-    header('location: login.php');
-  } else {
-    include('../scripts/dashboard.php');
-  }
-  if(!isset($_SESSION['access_token'])){
-    header("Location: login.php");
-    exit();
+  if (!session_id()) {
+    session_start();
   }
 
-  $username = $_SESSION['username'];
+  // if user is not logged in, they cannot access this page
+  // if (empty($_SESSION['access_token'])) {
+  //   header('location: login.php');
+  // } else {
+  //   include('../scripts/dashboard.php');
+  // }
+
+  if (isset($_SESSION['access_token'])) {
+    $username = $_SESSION['userData']['first_name'];
+  } else {
+    $username = $_SESSION['username'];
+  }
+
 ?>
 
 
@@ -41,7 +46,7 @@
             $html = "<h4 class=\"m-0\">".$username."</h4>";
             echo $html;
           ?>
-          <a href="login.php?logout='1'" class="font-weight-light text-muted mb-0">Disconnect</a>
+          <a href="dashboard.php?logout='1' class="font-weight-light text-muted mb-0">Disconnect</a>
         </div>
       </div>
     </div>

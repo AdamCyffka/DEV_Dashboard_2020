@@ -6,14 +6,8 @@
   if (isset($_SESSION['username'])) {
     header('location: dashboard.php');
   }
-  if(isset($_SESSION['access_token'])){
-    header("Location: dashboard.php");
-    exit();
-  }
 
-  $permissions = ['email']; // Optional permissions
-  $loginUrl = $handler->getLoginUrl('http://localhost:8080/scripts/fbcallback.php', $permissions);
-
+  $loginUrl = $fb->getRedirectLoginHelper()->getLoginUrl("http://localhost:8080/scripts/fbconfig.php")
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +48,7 @@
           <p>or sign in with:</p>
 
           <a href="<?php echo htmlspecialchars($loginUrl); ?>" class="mx-2" role="button"><i class="fa fa-facebook-f light-blue-text"></i></a>
-          <a href="" class="mx-2" role="button"><i class="fa fa-google light-blue-text"></i></a>
+          <!-- <a href="" class="mx-2" role="button"><i class="fa fa-google light-blue-text"></i></a> -->
 
         </form>
       </div>
