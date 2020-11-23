@@ -8,6 +8,7 @@
   }
 
   $loginUrl = $fb->getRedirectLoginHelper()->getLoginUrl("http://localhost:8080/scripts/fbconfig.php")
+
 ?>
 
 <!DOCTYPE html>

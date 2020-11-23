@@ -1,7 +1,7 @@
 <?php
 
-  require_once('../scripts/fbconfig.php');
-  require_once('../scripts/register.php');
+  include('../scripts/fbconfig.php');
+  include('../scripts/register.php');
 
   if (isset($_SESSION['userData'])) {
     header('location: dashboard.php');
@@ -32,7 +32,7 @@
         <form class="text-center border border-grey p-5 rounded" action="register.php" method="POST">
 
           <!-- display validation errors here -->
-          <?php include ('../scripts/errors.php'); ?>
+          <?php include('../scripts/errors.php'); ?>
 
           <p class="h4 mb-4">Register</p>
 

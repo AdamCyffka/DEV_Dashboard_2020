@@ -1,7 +1,7 @@
 <?php
 
-  require_once('../scripts/register.php');
-  
+  include('../scripts/register.php');
+
   if (!session_id()) {
     session_start();
   }
