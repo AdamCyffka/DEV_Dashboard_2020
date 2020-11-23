@@ -3,7 +3,7 @@
   require_once('../scripts/fbconfig.php');
   require_once('../scripts/register.php');
 
-  if (isset($_SESSION['username'])) {
+  if (isset($_SESSION['userData'])) {
     header('location: dashboard.php');
   }
 

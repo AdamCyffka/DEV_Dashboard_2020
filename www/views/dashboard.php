@@ -1,4 +1,5 @@
 <?php
+
   require_once('../scripts/register.php');
   
   if (!session_id()) {
@@ -6,23 +7,16 @@
   }
 
   // if user is not logged in, they cannot access this page
-  // if (empty($_SESSION['access_token'])) {
-  //   header('location: login.php');
-  // } else {
-  //   include('../scripts/dashboard.php');
-  // }
-
-  if (isset($_SESSION['access_token'])) {
-    $username = $_SESSION['userData']['first_name'];
+  if (empty($_SESSION['userData'])) {
+    header('location: login.php');
   } else {
-    $username = $_SESSION['username'];
+    $username = $_SESSION['userData']['name'];
+    include('../scripts/dashboard.php');
   }
 
 ?>
 
-
 <!DOCTYPE html>
-
 <html>
 
 <head>
