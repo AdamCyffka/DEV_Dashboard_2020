@@ -58,6 +58,7 @@
     session_destroy();
     unset($_SESSION['userData']);
     header('location: ../views/login.php');
+    exit;
   }
 
 ?>

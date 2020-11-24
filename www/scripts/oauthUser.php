@@ -9,7 +9,6 @@ class OauthUser {
   }
 
   function verifyUser($userInfo) {
-
     $qry_body = "
             `username` = '".$userInfo['name']."',
             `oauth_uid` = '".$userInfo['id']."',
