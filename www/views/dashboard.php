@@ -40,7 +40,7 @@
             $html = "<h4 class=\"m-0\">".$username."</h4>";
             echo $html;
           ?>
-          <a href="dashboard.php?logout='1' class="font-weight-light text-muted mb-0">Disconnect</a>
+          <a href="dashboard.php?logout='1'" class="font-weight-light text-muted mb-0">Disconnect</a>
         </div>
       </div>
     </div>
@@ -87,14 +87,18 @@
 
     <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Widgets</p>
 
-    <ul id="list_services" class="nav flex-column bg-white mb-0">
+    <ul id="list_widgets" class="nav flex-column bg-white mb-0">
     <?php
       foreach ($all_widgets_by_services as $service => $values) {
         foreach ($values['widgets'] as $widget => $value) {
+
+          if (!isset($user_widgets_by_services[$service]))
+            continue;
+
           $html = "
             <li class=\"nav-item\">
               <div class=\"nav-link text-dark font-italic bg-light\" title=\"".get_widget_desc($service, $widget)."\">
-                <a id=\"service_1\" class=\"fa ".get_widget_class($service, $widget)."mr-3 ml-3 fa-fw\"></a>
+                <a id=\"service_".$service."_widget_".$widget."\" class=\"fa ".get_widget_class($service, $widget)."mr-3 ml-3 fa-fw\"></a>
                 ".get_widget_name($service, $widget)."
                 <i class=\"fa ".get_service_logo($service)."float-right fa-fw\"></i>
               </div>
