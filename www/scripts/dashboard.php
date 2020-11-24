@@ -5,11 +5,13 @@
   $data = array();
 
   // get user services and widgets
-  $sql = "SELECT * FROM user_data WHERE user='1'";
+  $sql = "SELECT * FROM user_data WHERE user='".$_SESSION['userData']['id']."'";
   $result = mysqli_query($db, $sql);
-  if ($result !== false) {
-    foreach ($result->fetch_assoc() as $key => $value) {
-      $data[$key] = $value;
+  if ($result !== false && $result !== true) {
+    foreach ($result->fetch_all() as $key => $value) {
+      print_r($value);
+      $data['services'] = $value[1];
+      $data['widgets'] = $value[2];
     }
   } else {
     echo mysqli_error($db);
@@ -54,9 +56,7 @@
   $user_widgets_by_services = array();
   foreach ($user_services as $key => $value) {
     $to_add = explode(",", $user_widgets[$key]);
-    if ($to_add[0] != null) {
-      $user_widgets_by_services[$value] = $to_add;
-    }
+    $user_widgets_by_services[$value] = $to_add;
   }
 
   function get_service_class($index) {

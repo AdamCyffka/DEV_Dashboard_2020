@@ -11,4 +11,12 @@ $(document).ready(function() {
       $(this).removeClass("fa-minus text-danger").addClass("fa-plus text-success");
     }
   });
+
+  $("#list_widgets a").on("click", function() {
+    if ($(this).hasClass("text-success")) {
+      $(this).removeClass("fa-plus text-success").addClass("fa-minus text-danger");
+    } else {
+      $(this).removeClass("fa-minus text-danger").addClass("fa-plus text-success");
+    }
+  });
 });
