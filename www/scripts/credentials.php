@@ -12,15 +12,15 @@
   define('GL_REDIRECT_URL', 'http://localhost:8080');
 
   // FACEBOOK
-  define('FB_APP_ID', '670367266996537');
-  define('FB_APP_SECRET', 'b163eef587a59136bc0f1070326db86b');
+  define('FB_APP_ID', '363088674988847');
+  define('FB_APP_SECRET', 'fc9dc90afc666d939f8c46294e15b5dc');
   define('FB_REDIRECT_URL', '');
   define('FB_API_path', '../libraries/facebook-sdk/src/Facebook/autoload.php');
 
   // LINKEDIN
-  define("CLIENT_ID", "CLIENT_ID");
-  define("CLIENT_SECRET", "CLIENT_SECRET");
-  define("REDIRECT_URI", "http://localhost/PhpPot-Examples/simple-php-linkedin-oauth-login-integration/index.php");
+  define("CLIENT_ID", "77o93evrviieh0");
+  define("CLIENT_SECRET", "zoz7bAUkmoinOLH4");
+  define("REDIRECT_URI", "http://localhost/index.php");
   define("SCOPE", 'r_basicprofile r_emailaddress' );
 
 ?>
