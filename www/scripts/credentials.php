@@ -23,4 +23,7 @@
   define("REDIRECT_URI", "http://localhost/index.php");
   define("SCOPE", 'r_basicprofile r_emailaddress' );
 
+  // OPEN WEATHER MAP API KEY
+  define("WEATHER_API_KEY", '176220bfd4e85bd960573d3056b0c7c7' );
+
 ?>
