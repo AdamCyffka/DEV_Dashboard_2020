@@ -2,7 +2,7 @@
 
   include('scripts/register.php');
 
-  if (isset($_SESSION['username'])) {
+  if (isset($_SESSION['userData'])) {
     header('location: views/dashboard.php');
   }
 

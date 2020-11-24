@@ -1,10 +1,12 @@
 <?php
 
-  require_once('dbconfig.php');
+  include('dbconfig.php');
 
   $username = "";
   $email = "";
   $errors = array();
+  $data = array();
+  $userData = array();
 
   // register user
   if (isset($_POST['register'])) {
@@ -23,8 +25,7 @@
       $sql = "INSERT INTO user (username, email, password)
               VALUES ('$username', '$email,', '$password')";
       mysqli_query($db, $sql);
-      $_SESSION['username'] = $username;
-      $_SESSION['success'] = "Succès";
+      $_SESSION['userData']['username'] = $username;
       header('location: ../views/dashboard.php');
     }
   }
@@ -39,9 +40,12 @@
       $query = "SELECT * FROM user WHERE username='$username' AND password='$password'";
       $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) == 1) {
-        // log user in
-        $_SESSION['username'] = $username;
-        $_SESSION['success'] = "Succès";
+        foreach ($result->fetch_assoc() as $key => $value) {
+          $data[$key] = $value;
+        }
+        $_SESSION['userData']['id'] = isset($data['id']) ? $data['id'] : null;
+        $_SESSION['userData']['email'] = isset($data['email']) ? $data['email'] : null;
+        $_SESSION['userData']['name'] = $username;
         header('location: ../views/dashboard.php'); // redirect to dashboard
       } else {
         array_push($errors, "Wrong username/password combination");
@@ -52,10 +56,9 @@
   // logout
   if (isset($_GET['logout'])) {
     session_destroy();
-    unset($_SESSION['username']);
     unset($_SESSION['userData']);
-    unset($_SESSION['access_token']);
     header('location: ../views/login.php');
+    exit;
   }
 
 ?>

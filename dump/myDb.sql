@@ -53,6 +53,7 @@ INSERT INTO `service` (`id`, `name`) VALUES
 
 CREATE TABLE `user` (
   `id` int NOT NULL,
+  `oauth_uid` varchar(255) DEFAULT NULL,
   `username` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `email` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,

@@ -1,13 +1,14 @@
 <?php
 
-  require_once('../scripts/fbconfig.php');
-  require_once('../scripts/register.php');
+  include('../scripts/fbconfig.php');
+  include('../scripts/register.php');
 
-  if (isset($_SESSION['username'])) {
+  if (isset($_SESSION['userData'])) {
     header('location: dashboard.php');
   }
 
   $loginUrl = $fb->getRedirectLoginHelper()->getLoginUrl("http://localhost:8080/scripts/fbconfig.php")
+
 ?>
 
 <!DOCTYPE html>

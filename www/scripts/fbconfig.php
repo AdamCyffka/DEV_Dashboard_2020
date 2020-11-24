@@ -1,13 +1,11 @@
 <?php
 
   require_once('../libraries/facebook-sdk/src/Facebook/autoload.php');
+  require_once('oauthUser.php');
+  include('dbConfig.php');
 
   if (!session_id()) {
     session_start();
-  }
-
-  if(isset($_GET['state'])) {
-    $_SESSION['FBRLH_state'] = $_GET['state'];
   }
 
   $fb = new \Facebook\Facebook([
@@ -17,21 +15,22 @@
   ]);
 
   try {
-    $accessToken = $access_token = $fb->getRedirectLoginHelper()->getAccessToken();
-  } catch (\Facebook\Exceptions\FacebookResponseException $e){
+    $accessToken = $fb->getRedirectLoginHelper()->getAccessToken();
+  } catch (\Facebook\Exceptions\FacebookResponseException $e) {
       echo "Response Exception: " . $e->getMessage();
       exit();
-  } catch (\Facebook\Exceptions\FacebookSDKException $e){
+  } catch (\Facebook\Exceptions\FacebookSDKException $e) {
       echo "SDK Exception: " . $e->getMessage();
       exit();
   }
 
-  if (isset($access_token)) {
-    $response = $fb->get("/me?fields=id, first_name, last_name, email", $accessToken);
-    $userData = $response->getGraphNode()->asArray();
-    $_SESSION['userData'] = $userData;
-    $_SESSION['access_token'] = (string) $accessToken;
-    header('Location: ../views/dashboard.php');
+  if (isset($accessToken)) {
+    $response = $fb->get('/me?fields=name,email,id', $accessToken);
+    $fbUserData = $response->getGraphUser()->asArray();
+  
+    // Create an instance of the OauthUser class
+    $oauth_user_obj = new OauthUser($db);
+    $userData = $oauth_user_obj->verifyUser($fbUserData);
   }
 
 ?>
