@@ -2,7 +2,6 @@
 
   include('../scripts/fbconfig.php');
   include('../scripts/register.php');
-  require_once('../scripts/widgetsParser.php');
 
   if (isset($_SESSION['userData'])) {
     header('location: dashboard.php');

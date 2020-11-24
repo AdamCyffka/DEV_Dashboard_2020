@@ -9,9 +9,9 @@
 
     function chuckNorrisWidget($value) {
       $api = new Api();
-      $joke = $api->callApi('GET', "https://api.chucknorris.io/jokes/random?name=$value");
+      $joke = $api->callApi('GET', "https://api.chucknorris.io/jokes/search?query=$value");
       $object = json_decode($joke);
-      $result = $object->value;
+      $result = $object->result[0]->value;
       return $result;
     }
 

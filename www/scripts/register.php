@@ -1,6 +1,7 @@
 <?php
 
   include('dbconfig.php');
+  include('fbconfig.php');
 
   $username = "";
   $email = "";
@@ -30,11 +31,18 @@
       $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) == 0) { // If no previous user is using this username
         $sql = "INSERT INTO user (`username`, `email`, `password`) VALUES ('$username', '$email,', '$password')";
-        mysqli_query($db, $sql);
+        $result = mysqli_query($db, $sql);
         if (!$result) {
-          echo 'Query Failed ';
+          echo 'Query Failed';
         }
         if (mysqli_affected_rows($db) == 1) { // If the Insert Query was successfull
+          $query = "SELECT * FROM user WHERE username='$username' AND password='$password'";
+          $result = mysqli_query($db, $query);
+          foreach ($result->fetch_assoc() as $key => $value) {
+            $data[$key] = $value;
+          }
+          $_SESSION['userData']['id'] = isset($data['id']) ? $data['id'] : null;
+          $_SESSION['userData']['email'] = isset($data['email']) ? $data['email'] : null;
           $_SESSION['userData']['name'] = $username;
           header('location: ../views/dashboard.php');
         }
@@ -69,6 +77,8 @@
 
   // logout
   if (isset($_GET['logout'])) {
+    $helper = $fb->getRedirectLoginHelper();
+    
     session_destroy();
     unset($_SESSION['userData']);
     header('location: ../views/login.php');

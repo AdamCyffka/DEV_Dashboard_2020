@@ -1,7 +1,6 @@
 <?php
 
   include('../scripts/register.php');
-  require_once('../scripts/callApi.php');
 
   if (!session_id()) {
     session_start();
