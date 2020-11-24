@@ -1,6 +1,7 @@
 <?php
 
   include('../scripts/register.php');
+  require_once('../scripts/callApi.php');
 
   if (!session_id()) {
     session_start();
@@ -13,6 +14,10 @@
     $username = $_SESSION['userData']['name'];
     include('../scripts/dashboard.php');
   }
+
+  // Create an instance of the OauthUser class
+  // $api = new Api();
+  // $userData = $api->callApi('GET', 'http://api.openweathermap.org/data/2.5/weather?id=59790&lang=en&units=metric&APPID=176220bfd4e85bd960573d3056b0c7c7');
 
 ?>
 
