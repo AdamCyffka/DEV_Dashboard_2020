@@ -8,7 +8,7 @@ class OauthUser {
     $this->db = $dtb;
   }
 
-  function verifyUser($userInfo) {
+  function verifyFacebookUser($userInfo) {
     $qry_body = "
             `username` = '".$userInfo['name']."',
             `oauth_uid` = '".$userInfo['id']."',

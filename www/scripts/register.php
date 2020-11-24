@@ -16,17 +16,31 @@
     $password2 = mysqli_real_escape_string($db, $_POST['password2']);
 
     if ($password1 != $password2) {
-      array_push($errors, "The two passwords do not match");
+      array_push($errors, "The two passwords do not match.");
+    }
+
+    if (strlen($password1) && strlen($password2) < 5) {
+      array_push($errors, "Passwords need to be 6 characters or longer.");
     }
 
     // if there are no erros, save user to database
     if (count($errors) == 0) {
       $password = md5($password1); // encrypt password before storing in db (security)
-      $sql = "INSERT INTO user (username, email, password)
-              VALUES ('$username', '$email,', '$password')";
-      mysqli_query($db, $sql);
-      $_SESSION['userData']['username'] = $username;
-      header('location: ../views/dashboard.php');
+      $query = "SELECT * FROM user WHERE email = '$email'";
+      $result = mysqli_query($db, $query);
+      if (mysqli_num_rows($result) == 0) { // If no previous user is using this username
+        $sql = "INSERT INTO user (`username`, `email`, `password`) VALUES ('$username', '$email,', '$password')";
+        mysqli_query($db, $sql);
+        if (!$result) {
+          echo 'Query Failed ';
+        }
+        if (mysqli_affected_rows($db) == 1) { // If the Insert Query was successfull
+          $_SESSION['userData']['name'] = $username;
+          header('location: ../views/dashboard.php');
+        }
+      } else { // The username is not available.
+        array_push($errors, "That email has already been registered.");
+      }
     }
   }
 
@@ -48,7 +62,7 @@
         $_SESSION['userData']['name'] = $username;
         header('location: ../views/dashboard.php'); // redirect to dashboard
       } else {
-        array_push($errors, "Wrong username/password combination");
+        array_push($errors, "Wrong username/password combination.");
       }
     }
   }
