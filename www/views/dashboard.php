@@ -24,7 +24,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../public/css/dashboard.css">
 
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="../public/js/dashboard.js"></script>
 </head>
 
@@ -48,65 +48,16 @@
     <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Services</p>
 
     <ul id="list_services" class="nav flex-column bg-white mb-0">
-      <li class="nav-item">
-        <div class="nav-link text-dark font-italic bg-light">
-          <a id="service_1" class="<?php echo "fa ".get_service_class(1)."mr-3 ml-3 fa-fw";?>"></a>
-          Weather
-          <i class="fa fa-cloud float-right fa-fw"></i>
-        </div>
-      </li>
-      <li class="nav-item bg-light">
-        <div class="nav-link text-dark font-italic">
-          <a id="service_2" class="<?php echo "fa ".get_service_class(2)."mr-3 ml-3 fa-fw";?>" mode="button"></a>
-          Youtube
-          <i class="fa fa-youtube float-right fa-fw"></i>
-        </div>
-      </li>
-      <li class="nav-item">
-        <div class="nav-link text-dark font-italic bg-light">
-          <a id="service_3" class="<?php echo "fa ".get_service_class(3)."mr-3 ml-3 fa-fw";?>"></a>
-          Steam
-          <i class="fa fa-steam float-right fa-fw"></i>
-        </div>
-      </li>
-      <li class="nav-item">
-        <div class="nav-link text-dark font-italic bg-light">
-          <a id="service_4" class="<?php echo "fa ".get_service_class(4)."mr-3 ml-3 fa-fw";?>"></a>
-          Cinema
-          <i class="fa fa-film float-right fa-fw"></i>
-        </div>
-      </li>
-      <li class="nav-item">
-        <div class="nav-link text-dark font-italic bg-light">
-          <a id="service_5" class="<?php echo "fa ".get_service_class(5)."mr-3 ml-3 fa-fw";?>"></a>
-          Get a joke
-          <i class="fa fa-book float-right fa-fw"></i>
-        </div>
-      </li>
+    <?php
+      echo display_services_list();
+    ?>
     </ul>
 
     <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Widgets</p>
 
     <ul id="list_widgets" class="nav flex-column bg-white mb-0">
     <?php
-      foreach ($all_widgets_by_services as $service => $values) {
-        foreach ($values['widgets'] as $widget => $value) {
-
-          if (!isset($user_widgets_by_services[$service]))
-            continue;
-
-          $html = "
-            <li class=\"nav-item\">
-              <div class=\"nav-link text-dark font-italic bg-light\" title=\"".get_widget_desc($service, $widget)."\">
-                <a id=\"service_".$service."_widget_".$widget."\" class=\"fa ".get_widget_class($service, $widget)."mr-3 ml-3 fa-fw\"></a>
-                ".get_widget_name($service, $widget)."
-                <i class=\"fa ".get_service_logo($service)."float-right fa-fw\"></i>
-              </div>
-            </li>
-          ";
-          echo $html;
-        }
-      }
+      echo display_widgets_list();
     ?>
     </ul>
 
