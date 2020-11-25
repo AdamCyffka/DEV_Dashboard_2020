@@ -28,6 +28,7 @@
   <script src="https://kit.fontawesome.com/e98aadb0d3.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="../public/js/dashboard.js"></script>
+  <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
 </head>
 
 <body>
@@ -73,7 +74,7 @@
     <h2 class="display-4 text-white">Dashboard</h2>
     <p class="lead text-white mb-0">Find here your favorites and useful widgets.</p>
     <div class="separator"></div>
-    <div class="row text-white">
+    <div id="sortablelist" class="row text-white">
 
       <!-- weather widget -->
       <div class="col-md-6 col-xl-3 mb-4">
@@ -252,6 +253,13 @@
 
   </div>
   <!-- End demo content -->
+
+  <script>
+    new Sortable(sortablelist, {
+      animation: 150,
+      ghostClass: 'blue-background-class'
+    });
+  </script>
 
 </body>
 
