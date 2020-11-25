@@ -22,8 +22,6 @@
       $result['description'] = $object->weather[0]->description;
       $result['name'] = $object->name;
       $result['temp'] = $object->main->temp;
-      $result['temp_min'] = $object->main->temp_min;
-      $result['temp_max'] = $object->main->temp_max;
       return $result;
     }
 

@@ -1,12 +1,17 @@
-// var time = (new Date).getTime()
-// var ip = require("ip");
+<?php
+
+$ipaddress = $_SERVER['REMOTE_ADDR'];
+$date = new DateTime();
+$timeStamp = $date->getTimestamp();
+
+?>
 
 {
   "client": {
-    "host": ip.address()
+    "host": <?php echo $ipaddress ?>
   },
   "server": {
-    "current_time": time,
+    "current_time":  <?php echo $timeStamp ?>,
     "services": [{
         "name": "weather",
         "widgets": [{
