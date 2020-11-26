@@ -73,15 +73,6 @@ CREATE TABLE `user_data` (
   `widgets` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Déchargement des données de la table `user_data`
---
-
-INSERT INTO `user_data` (`user`, `services`, `widgets`) VALUES
-(1, NULL, ';;;;'),
-(2, NULL, ';;;;'),
-(3, NULL, ';;;;'),
-(5, NULL, ';;;;');
 
 -- --------------------------------------------------------
 
