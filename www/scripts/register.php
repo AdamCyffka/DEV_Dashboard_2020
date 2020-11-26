@@ -29,6 +29,11 @@
       $query = "SELECT * FROM user WHERE email = '$email'";
       $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) == 0) { // If no previous user is using this username
+        // $longueurKey = 15;
+        // $key = "";
+        // for ($i = 1; $i < $longueurKey; $i++) {
+        //   $key .= mt_rand(0, 9);
+        // }
         $sql = "INSERT INTO user (`username`, `email`, `password`) VALUES ('$username', '$email,', '$password')";
         $result = mysqli_query($db, $sql);
         if (!$result) {

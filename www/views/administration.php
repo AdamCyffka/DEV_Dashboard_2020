@@ -59,10 +59,10 @@
         <td><?= $data['email'] ?></td>
         <td><?= $data['date'] ?></td>
         <td>
-          <span class="badge badge-info">admin</span>
+          <span class="badge badge-info"><?= $data['user_type'] ?></span>
         </td>
         <td>
-          <a href="<?php echo "../scripts/delete.php?username=".$data['username'];?>" type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+          <a href="<?php echo "../scripts/delete.php?id=".$data['id'];?>" type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
         </td>
       </tr>
       <?php endforeach; ?>
