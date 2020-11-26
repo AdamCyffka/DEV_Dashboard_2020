@@ -26,22 +26,20 @@
         $qry = "INSERT INTO user SET ".$qry_body."";
       }
       $result = mysqli_query($this->db, $qry);
-      if (mysqli_affected_rows($this->db) == 1) {
-        $query = "SELECT * FROM user";
-        $result = mysqli_query($this->db, $query);
-        foreach ($result->fetch_assoc() as $key => $value) {
-          $this->data[$key] = $value;
-        }
-        $_SESSION['userData']['id'] = isset($this->data['id']) ? $this->data['id'] : null;
-        $_SESSION['userData']['oauth_uid'] = $userInfo['id'];
-        $_SESSION['userData']['name'] = $userInfo['name'];
-        $_SESSION['userData']['email'] = $userInfo['email'];
-        $user_id = $this->data['id'];
-        $widget = "INSERT INTO user_data (`user`, `widgets`) VALUES ('$user_id', ';;;;')";
-        $result_widget = mysqli_query($this->db, $widget);
-        header('location: ../views/dashboard.php');
-        exit();
+      $query = "SELECT * FROM user";
+      $result = mysqli_query($this->db, $query);
+      foreach ($result->fetch_assoc() as $key => $value) {
+        $this->data[$key] = $value;
       }
+      $_SESSION['userData']['id'] = isset($this->data['id']) ? $this->data['id'] : null;
+      $_SESSION['userData']['oauth_uid'] = $userInfo['id'];
+      $_SESSION['userData']['name'] = $userInfo['name'];
+      $_SESSION['userData']['email'] = $userInfo['email'];
+      $user_id = $this->data['id'];
+      $widget = "INSERT INTO user_data (`user`, `widgets`) VALUES ('$user_id', ';;;;')";
+      $result_widget = mysqli_query($this->db, $widget);
+      header('location: ../views/dashboard.php');
+      exit();
     }
   }
 
