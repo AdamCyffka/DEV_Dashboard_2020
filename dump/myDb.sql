@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : mar. 24 nov. 2020 à 11:23
+-- Généré le : jeu. 26 nov. 2020 à 16:57
 -- Version du serveur :  8.0.22
 -- Version de PHP : 7.4.11
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `myDb`
 --
-CREATE DATABASE IF NOT EXISTS `myDb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `myDb`;
 
 -- --------------------------------------------------------
 
@@ -95,7 +93,6 @@ INSERT INTO `widget` (`id`, `service`, `name`, `description`, `arg_count`, `args
 (1, 1, 'City weather', 'Display temperature for a city with small description.', 1, 'Paris'),
 (1, 2, 'Load Video', 'Load a Youtube video by Id.', 1, 'https://www.youtube.com/watch?v=RI86k9rsGZ0'),
 (2, 2, 'Get Video Views', 'Get a Youtube video\'s views by Id.', 1, 'https://www.youtube.com/watch?v=RI86k9rsGZ0'),
-(3, 2, 'Get Video Likes', 'Get a Youtube video\'s likes & dislikes by Id.', 1, 'https://www.youtube.com/watch?v=RI86k9rsGZ0'),
 (1, 3, 'Player Infos', 'Get a Steam player informations by Id.', 1, 'lightningvalipss'),
 (1, 4, 'Get Movie Infos', 'Get movie\'s informations by name.', 1, 'Forest Gump'),
 (1, 5, 'Get a Joke', 'Get a Chuck Norris\' joke by word.', 1, 'prout');
@@ -136,7 +133,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
