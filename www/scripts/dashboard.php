@@ -1,8 +1,5 @@
 <?php
-
   include('dbconfig.php');
-
-
 
   // INIT
   $user_widgets_by_services = array();
@@ -10,6 +7,33 @@
   store_user_widgets_by_services();
   store_all_widgets_by_services();
 
+  // REQUESTS
+  $data = array();
+  if (isset($_POST['widget_button_id'])) {
+    $ids = explode("_", str_replace("close_", "", $_POST['widget_button_id']));
+    update_widgets_list($ids[0], $ids[1]);
+    store_user_widgets_by_services();
+    store_all_widgets_by_services();
+    echo json_encode(array("widgets_list" => display_widgets_list(), "displayable_widgets" => get_displayable_widgets()));
+    unset($_POST['widget_button_id']);
+  } if (isset($_POST['widgetlist_button_id'])) {
+    $ids = explode("_", str_replace("widget_", "", $_POST['widgetlist_button_id']));
+    update_widgets_list($ids[0], $ids[1]);
+    store_user_widgets_by_services();
+    store_all_widgets_by_services();
+    echo json_encode(array("widgets_list" => display_widgets_list(), "displayable_widgets" => get_displayable_widgets()));
+    unset($_POST['widgetlist_button_id']);
+  } if (isset($_POST['service_button_id'])) {
+    update_services_list(str_replace("service_", "", $_POST['service_button_id']));
+    store_user_widgets_by_services();
+    store_all_widgets_by_services();
+    echo json_encode(array("services_list" => display_services_list(), "widgets_list" => display_widgets_list(), "displayable_widgets" => get_displayable_widgets()));
+    unset($_POST['service_button_id']);
+  }
+  
+  
+  // FUNCTIONS
+  
   // get user's services and widgets
   function store_user_widgets_by_services() {
     global $db;
@@ -75,38 +99,16 @@
     $all_widgets_by_services = $data;
   }
 
-
-  // REQUESTS
-
-  $data = array();
-  if (isset($_POST['widget_button_id'])) {
-    $ids = explode("_", str_replace("widget_", "", $_POST['widget_button_id']));
-    update_widgets_list($ids[0], $ids[1]);
-    store_user_widgets_by_services();
-    store_all_widgets_by_services();
-    echo json_encode(array("widgets_list" => display_widgets_list()));
-    unset($_POST['widget_button_id']);
-  } if (isset($_POST['service_button_id'])) {
-    update_services_list(str_replace("service_", "", $_POST['service_button_id']));
-    store_user_widgets_by_services();
-    store_all_widgets_by_services();
-    echo json_encode(array("services_list" => display_services_list(), "widgets_list" => display_widgets_list()));
-    unset($_POST['service_button_id']);
-  }
-
-
-  // FUNCTIONS
-
   function get_service_class($index) {
     global $user_widgets_by_services;
-
+    
     if (isset($user_widgets_by_services[$index])) {
       return "fa-minus text-danger ";
     } else {
       return "fa-plus text-success ";
     }
   }
-
+  
   function get_service_name($service_index) {
     global $all_widgets_by_services;
     return $all_widgets_by_services[$service_index]['name'];
@@ -240,6 +242,39 @@
     $result = mysqli_query($db, $sql);
     if ($result === false || $result === true)
       echo mysqli_error($db);
+  }
+
+  function get_widget_function($service_id, $widget_id) {
+    switch ($service_id) {
+      case 1:
+        return "display_weather_widget";
+      case 2:
+        if ($widget_id == 1)
+          return "display_youtube_load_video_widget";
+        else if ($widget_id == 2)
+          return "display_youtube_video_info_widget";
+      case 3:
+        return "display_steam_widget";
+      case 4:
+        return "display_cinema_widget";
+      case 5:
+        return "display_joke_widget";
+      default:
+        return "";
+    }
+  }
+
+  function get_displayable_widgets() {
+    global $user_widgets_by_services;
+    $ret = array();
+
+    foreach ($user_widgets_by_services as $service => $widgets) {
+      foreach ($widgets as $key => $value) {
+        if ($value)
+          $ret["widget_".$service."_".$value."_widget"] = get_widget_function($service, $value);
+      }
+    }
+    return $ret;
   }
 
 ?>

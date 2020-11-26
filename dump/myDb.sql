@@ -106,7 +106,6 @@ INSERT INTO `widget` (`id`, `service`, `name`, `description`, `arg_count`, `args
 (1, 1, 'City weather', 'Display temperature for a city with small description.', 1, 'Paris'),
 (1, 2, 'Load Video', 'Load a Youtube video by Id.', 1, 'https://www.youtube.com/watch?v=RI86k9rsGZ0'),
 (2, 2, 'Get Video Views', 'Get a Youtube video\'s views by Id.', 1, 'https://www.youtube.com/watch?v=RI86k9rsGZ0'),
-(3, 2, 'Get Video Likes', 'Get a Youtube video\'s likes & dislikes by Id.', 1, 'https://www.youtube.com/watch?v=RI86k9rsGZ0'),
 (1, 3, 'Player Infos', 'Get a Steam player informations by Id.', 1, 'lightningvalipss'),
 (1, 4, 'Get Movie Infos', 'Get movie\'s informations by name.', 1, 'Forest Gump'),
 (1, 5, 'Get a Joke', 'Get a Chuck Norris\' joke by word.', 1, 'prout');
@@ -147,7 +146,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
