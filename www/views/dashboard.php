@@ -17,18 +17,21 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../public/css/dashboard.css">
 
   <script src="https://kit.fontawesome.com/e98aadb0d3.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="../public/js/dashboard.js"></script>
   <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+  <title>Dashboard</title>
 </head>
 
 <body>
@@ -71,8 +74,16 @@
   <!-- Page content holder -->
   <div class="page-content p-5" id="content">
     <!-- Demo content -->
-    <h2 class="display-4 text-white">Dashboard</h2>
-    <p class="lead text-white mb-0">Find here your favorites and useful widgets.</p>
+    <div class="">
+      <div class="text-left">
+        <h2 class="display-4 text-white">Dashboard</h2>
+        <p class="lead text-white mb-0">Find here your favorites and useful widgets.</p>
+      </div>
+      <div class="text-right">
+        <a href="#" class="text-right font-weight-bold mb-0">Refresh all</a></br>
+        <a href="administration.php" class="text-right font-weight-bold mb-0">Administration</a>
+      </div>
+    </div>
     <div class="separator"></div>
     <div id="sortablelist" class="row text-white">
 
@@ -83,7 +94,7 @@
             Weather
             <span class="float-right">
               <a class="px-1 fas fa-edit text-info"></a>
-              <a class="px-1 fas fa-refresh text-success"></a>
+              <a class="px-1 fas fa-sync text-success"></a>
               <a class="px-1 fas fa-times-circle text-danger"></a>
             </span>
           </div>
@@ -108,18 +119,18 @@
       </div>
 
       <!-- load yt video widget -->
-      <div class="col-md-2 col-md-4 mb-4">
+      <div class="col-md-6 col-xl-3 mb-4">
         <div class="card shadow border-left-warning">
           <div class="text-dark card-header font-weight-bold mb-3">
             Youtube video
             <span class="float-right">
               <a class="px-1 fas fa-edit text-info"></a>
-              <a class="px-1 fas fa-refresh text-success"></a>
+              <a class="px-1 fas fa-sync text-success"></a>
               <a class="px-1 fas fa-times-circle text-danger"></a>
             </span>
           </div>
           <div class="card-body" style="padding-top: 0rem;">
-            <iframe width="410" height="315" src="https://www.youtube.com/embed/EAh4L3_HTJY" frameborder="0"
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/EAh4L3_HTJY" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen></iframe>
           </div>
@@ -133,7 +144,7 @@
             Youtube information
             <span class="float-right">
               <a class="px-1 fas fa-edit text-info"></a>
-              <a class="px-1 fas fa-refresh text-success"></a>
+              <a class="px-1 fas fa-sync text-success"></a>
               <a class="px-1 fas fa-times-circle text-danger"></a>
             </span>
           </div>
@@ -185,7 +196,7 @@
             Cinema
             <span class="float-right">
               <a class="px-1 fas fa-edit text-info"></a>
-              <a class="px-1 fas fa-refresh text-success"></a>
+              <a class="px-1 fas fa-sync text-success"></a>
               <a class="px-1 fas fa-times-circle text-danger"></a>
             </span>
           </div>
@@ -214,7 +225,7 @@
             Joke
             <span class="float-right">
               <a class="px-1 fas fa-edit text-info"></a>
-              <a class="px-1 fas fa-refresh text-success"></a>
+              <a class="px-1 fas fa-sync text-success"></a>
               <a class="px-1 fas fa-times-circle text-danger"></a>
             </span>
           </div>
@@ -235,7 +246,7 @@
             Steam
             <span class="float-right">
               <a class="px-1 fas fa-edit text-info"></a>
-              <a class="px-1 fas fa-refresh text-success"></a>
+              <a class="px-1 fas fa-sync text-success"></a>
               <a class="px-1 fas fa-times-circle text-danger"></a>
             </span>
           </div>
@@ -255,10 +266,10 @@
   <!-- End demo content -->
 
   <script>
-    new Sortable(sortablelist, {
-      animation: 150,
-      ghostClass: 'blue-background-class'
-    });
+  new Sortable(sortablelist, {
+    animation: 150,
+    ghostClass: 'blue-background-class'
+  });
   </script>
 
 </body>
