@@ -62,7 +62,7 @@
           <span class="badge badge-info">admin</span>
         </td>
         <td>
-          <a href='../scripts/delete.php?username=".$data['username']."' type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+          <a href="<?php echo "../scripts/delete.php?username=".$data['username'];?>" type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
         </td>
       </tr>
       <?php endforeach; ?>
