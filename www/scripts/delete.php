@@ -1,18 +1,17 @@
 <?php
 
-  // include('../scripts/dbconfig.php');
+  include('../scripts/dbconfig.php');
 
-  // $username = $_GET['username'];
+  $id = $_GET['id'];
 
-  // $query = "DELETE FROM user WHERE username = $username";
+  $query = "DELETE FROM user WHERE id = $id";
 
-  // if (mysqli_query($db, $query)) {
-  //   header('Location: ../views/administration.php');
-  //   exit;
-  // } else {
-  //   echo "Error deleting record";
-  // }
+  $result = mysqli_query($db, $query);
 
-  echo $_GET['username'];
+  if (mysqli_affected_rows($db) == 1) { 
+    header('Location: ../views/administration.php');
+  } else {
+    echo "Error deleting record";
+  }
 
 ?>
