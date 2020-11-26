@@ -30,12 +30,7 @@
       $query = "SELECT * FROM user WHERE email = '$email'";
       $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) == 0) { // If no previous user is using this username
-        $longueurKey = 15;
-        $key = "";
-        for ($i = 1; $i < $longueurKey; $i++) {
-          $key .= mt_rand(0, 9);
-        }
-        $sql = "INSERT INTO user (`username`, `email`, `password`, `user_type`, `confirmkey`) VALUES ('$username', '$email,', '$password', '$user_type', '$key')";
+        $sql = "INSERT INTO user (`username`, `email`, `password`, `user_type`) VALUES ('$username', '$email,', '$password', '$user_type')";
         $result = mysqli_query($db, $sql);
         if (!$result) {
           echo 'Query Failed';
@@ -95,7 +90,7 @@
         }
         $_SESSION['userData']['id'] = isset($data['id']) ? $data['id'] : null;
         $_SESSION['userData']['email'] = isset($data['email']) ? $data['email'] : null;
-        $_SESSION['userData']['email'] = isset($data['email']) ? $data['email'] : null;
+        $_SESSION['userData']['user_type'] = isset($data['user_type']) ? $data['user_type'] : null;
         $_SESSION['userData']['name'] = $username;
         header('location: ../views/dashboard.php'); // redirect to dashboard
       } else {
