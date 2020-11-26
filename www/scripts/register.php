@@ -1,7 +1,6 @@
 <?php
 
   include('dbconfig.php');
-  include('fbconfig.php');
 
   $username = "";
   $email = "";
@@ -44,6 +43,9 @@
           $_SESSION['userData']['id'] = isset($data['id']) ? $data['id'] : null;
           $_SESSION['userData']['email'] = isset($data['email']) ? $data['email'] : null;
           $_SESSION['userData']['name'] = $username;
+          $user_id = $data['id'];
+          $widget = "INSERT INTO user_data (`user`, `widgets`) VALUES ('$user_id', ';;;;')";
+          $result_widget = mysqli_query($db, $widget);
           header('location: ../views/dashboard.php');
         }
       } else { // The username is not available.
@@ -77,8 +79,6 @@
 
   // logout
   if (isset($_GET['logout'])) {
-    $helper = $fb->getRedirectLoginHelper();
-    
     session_destroy();
     unset($_SESSION['userData']);
     header('location: ../views/login.php');
