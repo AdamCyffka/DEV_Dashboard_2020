@@ -80,10 +80,11 @@
 
   $data = array();
   if (isset($_POST['widget_button_id'])) {
-    update_widgets_list($_POST['widget_button_id']);
+    $ids = explode("_", str_replace("widget_", "", $_POST['widget_button_id']));
+    update_widgets_list($ids[0], $ids[1]);
     store_user_widgets_by_services();
     store_all_widgets_by_services();
-    echo json_encore(array("widgets_list" => display_widgets_list()));
+    echo json_encode(array("widgets_list" => display_widgets_list()));
     unset($_POST['widget_button_id']);
   } if (isset($_POST['service_button_id'])) {
     update_services_list(str_replace("service_", "", $_POST['service_button_id']));
@@ -182,7 +183,7 @@
         $row = "
           <li class=\"nav-item\">
             <div class=\"nav-link text-dark font-italic bg-light\" title=\"".get_widget_desc($service, $widget)."\">
-              <a id=\"service_".$service."_widget_".$widget."\" class=\"fa ".get_widget_class($service, $widget)."mr-3 ml-3 fa-fw\"></a>
+              <a id=\"widget_".$service."_".$widget."\" class=\"fa ".get_widget_class($service, $widget)."mr-3 ml-3 fa-fw\"></a>
               ".get_widget_name($service, $widget)."
               <i class=\"fa ".get_service_logo($service)."float-right fa-fw\"></i>
             </div>
@@ -194,36 +195,51 @@
     return $html;
   }
 
-  function update_services_list($button_id) {
+  function update_services_list($service_id) {
     global $db;
     global $user_widgets_by_services;
     $services_str = "";
 
-    if (isset($user_widgets_by_services[$button_id])) {
-      unset($user_widgets_by_services[$button_id]);
+    if (isset($user_widgets_by_services[$service_id])) {
+      unset($user_widgets_by_services[$service_id]);
       $services_str = implode(",", array_keys($user_widgets_by_services));
     } else {
-      $user_widgets_by_services[$button_id] = array();
+      $user_widgets_by_services[$service_id] = array();
       if (sizeof($user_widgets_by_services) > 1)
         $services_str = implode(",", array_keys($user_widgets_by_services));
       else
-        $services_str = $button_id;
+        $services_str = $service_id;
     }
 
     $sql = "UPDATE user_data SET services='".$services_str."' WHERE user='".$_SESSION['userData']['id']."'";
     $result = mysqli_query($db, $sql);
-    if ($result !== false && $result !== true) {
-      // foreach ($result->fetch_all() as $key => $value) {
-      //   $data['services'] = $value[1];
-      //   $data['widgets'] = $value[2];
-      // }
-    } else {
+    if ($result === false || $result === true)
       echo mysqli_error($db);
-    }
   }
 
-  function update_widgets_list($button_id) {
+  function update_widgets_list($service_id, $widget_id) {
+    global $db;
+    global $all_widgets_by_services;
+    global $user_widgets_by_services;
+    $widgets_str = "";
+    
+    foreach ($all_widgets_by_services as $key => $value) {
+      if (isset($user_widgets_by_services[$key])) {
+        if ($key == $service_id && in_array($widget_id, $user_widgets_by_services[$key])) {
+          unset($user_widgets_by_services[$key][array_search($widget_id, $user_widgets_by_services[$key])]);
+        } else if ($key == $service_id) {
+          array_push($user_widgets_by_services[$key], $widget_id);
+        }
+        $widgets_str .= implode(",", $user_widgets_by_services[$key]);
+      }
+      $widgets_str .= ";";
+    }
+    $widgets_str = substr_replace($widgets_str, "", -1);
 
+    $sql = "UPDATE user_data SET widgets='".$widgets_str."' WHERE user='".$_SESSION['userData']['id']."'";
+    $result = mysqli_query($db, $sql);
+    if ($result === false || $result === true)
+      echo mysqli_error($db);
   }
 
 ?>
