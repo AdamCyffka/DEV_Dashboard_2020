@@ -1,9 +1,14 @@
 <?php
 
+  // var_dump($_SESSION['userData']['user_type']);
+  // if ($_SESSION['userData']['user_type'] === 'admin') {
+  //   header('location: dashboard.php');
+  // }
+
   include('../scripts/dbconfig.php');
 
   $query = "SELECT * FROM user";
-  
+
   // Search by username
   if (!empty($_GET['q'])) {
     $query .= " WHERE username LIKE \"%" . $_GET['q'] . "%\"";
@@ -33,6 +38,7 @@
 </head>
 
 <body class="p-4">
+  <a href="dashboard.php" type="button" class="btn btn-primary"><i class="fas fa-chevron-left"></i> Go back</a></br></br>
   <h1>Administration</h1>
   <form action="" class="mb-4">
     <div class="form-group">
@@ -59,7 +65,11 @@
         <td><?= $data['email'] ?></td>
         <td><?= $data['date'] ?></td>
         <td>
-          <span class="badge badge-info"><?= $data['user_type'] ?></span>
+          <?php if ($data['user_type'] === 'user'): ?>
+            <span class="badge badge-info"><?= $data['user_type'] ?></span>
+          <?php elseif ($data['user_type'] === 'admin'): ?>
+            <span class="badge badge-danger"><?= $data['user_type'] ?></span>
+          <?php endif; ?>
         </td>
         <td>
           <a href="<?php echo "../scripts/delete.php?id=".$data['id'];?>" type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>

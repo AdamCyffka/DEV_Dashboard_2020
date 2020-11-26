@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : mar. 24 nov. 2020 à 11:23
+-- Généré le : jeu. 26 nov. 2020 à 17:46
 -- Version du serveur :  8.0.22
 -- Version de PHP : 7.4.11
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `myDb`
 --
-CREATE DATABASE IF NOT EXISTS `myDb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `myDb`;
 
 -- --------------------------------------------------------
 
@@ -53,10 +51,13 @@ INSERT INTO `service` (`id`, `name`) VALUES
 
 CREATE TABLE `user` (
   `id` int NOT NULL,
+  `confirmationkey` varchar(20) DEFAULT NULL,
+  `confirmation` int NOT NULL DEFAULT '0',
   `oauth_uid` varchar(255) DEFAULT NULL,
   `username` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `email` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `user_type` varchar(255) NOT NULL DEFAULT 'user',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -71,6 +72,16 @@ CREATE TABLE `user_data` (
   `services` text,
   `widgets` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `user_data`
+--
+
+INSERT INTO `user_data` (`user`, `services`, `widgets`) VALUES
+(1, NULL, ';;;;'),
+(2, NULL, ';;;;'),
+(3, NULL, ';;;;'),
+(5, NULL, ';;;;');
 
 -- --------------------------------------------------------
 

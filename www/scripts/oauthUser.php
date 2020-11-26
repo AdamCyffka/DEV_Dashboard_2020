@@ -12,6 +12,7 @@
       $qry_body = "
               `username` = '".$userInfo['name']."',
               `oauth_uid` = '".$userInfo['id']."',
+              `user_type` = 'user',
               `email` = '".$userInfo['email']."'";
 
       $select_qry = "SELECT * FROM user WHERE `oauth_uid` = '".$userInfo['id']."'";

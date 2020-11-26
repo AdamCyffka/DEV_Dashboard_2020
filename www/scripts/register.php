@@ -14,6 +14,7 @@
     $email = mysqli_real_escape_string($db, $_POST['email']);
     $password1 = mysqli_real_escape_string($db, $_POST['password1']);
     $password2 = mysqli_real_escape_string($db, $_POST['password2']);
+    $user_type = "user";
 
     if ($password1 != $password2) {
       array_push($errors, "The two passwords do not match.");
@@ -29,12 +30,12 @@
       $query = "SELECT * FROM user WHERE email = '$email'";
       $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) == 0) { // If no previous user is using this username
-        // $longueurKey = 15;
-        // $key = "";
-        // for ($i = 1; $i < $longueurKey; $i++) {
-        //   $key .= mt_rand(0, 9);
-        // }
-        $sql = "INSERT INTO user (`username`, `email`, `password`) VALUES ('$username', '$email,', '$password')";
+        $longueurKey = 15;
+        $key = "";
+        for ($i = 1; $i < $longueurKey; $i++) {
+          $key .= mt_rand(0, 9);
+        }
+        $sql = "INSERT INTO user (`username`, `email`, `password`, `user_type`, `confirmkey`) VALUES ('$username', '$email,', '$password', '$user_type', '$key')";
         $result = mysqli_query($db, $sql);
         if (!$result) {
           echo 'Query Failed';
@@ -48,9 +49,29 @@
           $_SESSION['userData']['id'] = isset($data['id']) ? $data['id'] : null;
           $_SESSION['userData']['email'] = isset($data['email']) ? $data['email'] : null;
           $_SESSION['userData']['name'] = $username;
+          $_SESSION['userData']['user_type'] = $user_type;
           $user_id = $data['id'];
           $widget = "INSERT INTO user_data (`user`, `widgets`) VALUES ('$user_id', ';;;;')";
           $result_widget = mysqli_query($db, $widget);
+
+
+          // Send mail confirmation
+          // $header = "MIME-Version: 1.0\r\n";
+          // $header .= 'From: "Dashboard.com"<support@dashboard.com>'."\n";
+          // $header .= 'Content-Type:text/html; charset="utf-8"'."n";
+          // $header .= 'Content-Transfer-Encoding: 8bit';
+          
+          // $message = '
+          //   <html>
+          //     <body>
+          //       <div align="center">
+          //         <a href="http://localhost:8080/views/dashboard.php#_=_">Confirmer votre compte !</a>
+          //       </div>
+          //     </body>
+          //   </html>
+          // ';
+          // mail($mail, "Confirmation de compte", $message, $header);
+
           header('location: ../views/dashboard.php');
         }
       } else { // The username is not available.
@@ -73,6 +94,7 @@
           $data[$key] = $value;
         }
         $_SESSION['userData']['id'] = isset($data['id']) ? $data['id'] : null;
+        $_SESSION['userData']['email'] = isset($data['email']) ? $data['email'] : null;
         $_SESSION['userData']['email'] = isset($data['email']) ? $data['email'] : null;
         $_SESSION['userData']['name'] = $username;
         header('location: ../views/dashboard.php'); // redirect to dashboard
