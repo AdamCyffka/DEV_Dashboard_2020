@@ -11,7 +11,9 @@
       $api = new Api();
       $joke = $api->callApi('GET', "https://api.chucknorris.io/jokes/search?query=$value");
       $object = json_decode($joke);
-      $result = $object->result[0]->value;
+      $result[0] = $object->result[0]->value;
+      $result[1] = $object->result[1]->value;
+      $result[2] = $object->result[2]->value;
       return $result;
     }
 
