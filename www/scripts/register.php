@@ -34,7 +34,7 @@
         return substr(md5(openssl_random_pseudo_bytes(20)), -$len);
       }
       $token = getToken(10);
-      $query = "SELECT * FROM user WHERE email = '$email'";
+      $query = "SELECT * FROM user WHERE username = '$username'";
       $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) == 0) { // If no previous user is using this username
         $sql = "INSERT INTO user (`username`, `email`, `password`, `user_type`, `token`) VALUES ('$username', '$email', '$password', '$user_type','$token')";
@@ -97,12 +97,12 @@
 
   // log user
   if (isset($_POST['login'])) {
-    $username = mysqli_real_escape_string($db, $_POST['email']);
+    $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
 
     if (count($errors) == 0) {
       $password = md5($password);
-      $query = "SELECT * FROM user WHERE email='$email' AND password='$password'";
+      $query = "SELECT * FROM user WHERE username='$username' AND password='$password'";
       $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) == 1) {
         foreach ($result->fetch_assoc() as $key => $value) {
@@ -111,12 +111,12 @@
         $_SESSION['userData']['id'] = isset($data['id']) ? $data['id'] : null;
         $_SESSION['userData']['user_type'] = isset($data['user_type']) ? $data['user_type'] : null;
         $_SESSION['userData']['confirmation'] = isset($data['confirmation']) ? $data['confirmation'] : null;
-        $_SESSION['userData']['name'] = $email;
+        $_SESSION['userData']['name'] = $username;
         if (($_SESSION['userData']['confirmation']) == 1) {
           header('location: ../views/dashboard.php'); // redirect to dashboard
         }
       } else {
-        array_push($errors, "Wrong email/password combination.");
+        array_push($errors, "Wrong username/password combination.");
       }
     }
   }

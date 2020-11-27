@@ -7,6 +7,10 @@
 
   include('../scripts/dbconfig.php');
 
+  if (isset($_SESSION['userData']['user_type']) && ($_SESSION['userData']['user_type']) == 'user') {
+    header('location: dashboard.php');
+  }
+
   $query = "SELECT * FROM user";
 
   // Search by username

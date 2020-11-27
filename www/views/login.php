@@ -39,8 +39,8 @@
 
           <p class="h4 mb-4">Login</p>
 
-          <input type="text" id="email" name="email" class="form-control mb-4" placeholder="Email"
-            value="<?php echo $email; ?>" required />
+          <input type="text" id="username" name="username" class="form-control mb-4" placeholder="Username"
+            value="<?php echo $username; ?>" required />
 
           <input type="password" id="password" name="password" class="form-control" placeholder="Password" required />
 
