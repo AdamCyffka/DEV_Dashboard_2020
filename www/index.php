@@ -3,7 +3,9 @@
   include('scripts/register.php');
 
   if (isset($_SESSION['userData'])) {
-    header('location: views/dashboard.php');
+    if (isset($_SESSION['userData']['confirmation']) && ($_SESSION['userData']['confirmation']) == 1) {
+      header('location: views/dashboard.php');
+    }
   }
 
 ?>

@@ -72,8 +72,8 @@
             $mail->Port       = 587;                   // set the SMTP port for the GMAIL server
 
             // Recipients
-            $mail->setFrom('adamcyffka62@gmail.com', 'Adam Cyffka');
-            $mail->addAddress('adamcyffka62@gmail.com');
+            $mail->setFrom('dashboardepitech59@gmail.com', 'Dashboard');
+            $mail->addAddress($email);
 
             // Content
             $mail->isHTML(true);
@@ -112,7 +112,9 @@
         $_SESSION['userData']['user_type'] = isset($data['user_type']) ? $data['user_type'] : null;
         $_SESSION['userData']['confirmation'] = isset($data['confirmation']) ? $data['confirmation'] : null;
         $_SESSION['userData']['name'] = $username;
-        header('location: ../views/dashboard.php'); // redirect to dashboard
+        if (($_SESSION['userData']['confirmation']) == 1) {
+          header('location: ../views/dashboard.php'); // redirect to dashboard
+        }
       } else {
         array_push($errors, "Wrong username/password combination.");
       }

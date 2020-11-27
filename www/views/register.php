@@ -3,8 +3,11 @@
   include('../scripts/fbconfig.php');
   include('../scripts/register.php');
 
+
   if (isset($_SESSION['userData'])) {
-    header('location: dashboard.php');
+    if (isset($_SESSION['userData']['confirmation']) && ($_SESSION['userData']['confirmation']) == 1) {
+      header('location: dashboard.php');
+    }
   }
 
   $loginUrl = $fb->getRedirectLoginHelper()->getLoginUrl("http://localhost:8080/scripts/fbconfig.php")
