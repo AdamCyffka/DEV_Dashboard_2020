@@ -34,7 +34,6 @@
       $_SESSION['userData']['id'] = isset($this->data['id']) ? $this->data['id'] : null;
       $_SESSION['userData']['oauth_uid'] = $userInfo['id'];
       $_SESSION['userData']['name'] = $userInfo['name'];
-      $_SESSION['userData']['email'] = $userInfo['email'];
       $user_id = $this->data['id'];
       $widget = "INSERT INTO user_data (`user`, `widgets`) VALUES ('$user_id', ';;;;')";
       $result_widget = mysqli_query($this->db, $widget);
