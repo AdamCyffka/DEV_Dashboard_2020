@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : ven. 27 nov. 2020 à 16:08
+-- Généré le : ven. 27 nov. 2020 à 21:07
 -- Version du serveur :  8.0.22
 -- Version de PHP : 7.4.11
 
