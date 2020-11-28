@@ -114,6 +114,40 @@
     return $all_widgets_by_services[$service_index]['name'];
   }
   
+  function get_widget_arg_name($service_id, $widget_id) {
+    switch ($service_id) {
+      case 1:
+        return "City";
+      case 2:
+        return "Video URL";
+      case 3:
+        return "Steam ID";
+      case 4:
+        return "Film Name";
+      case 5:
+        return "A Name";
+      default:
+        return "";
+    }
+  }
+
+  function get_widget_arg_placeholder($service_id, $widget_id) {
+    switch ($service_id) {
+      case 1:
+        return "Paris";
+      case 2:
+        return "https://www.youtube.com/watch?v=nwsewSMWIas";
+      case 3:
+        return "Valipss";
+      case 4:
+        return "Avatar";
+      case 5:
+        return "Adam";
+      default:
+        return "";
+    }
+  }
+
   function get_widget_name($service_index, $widget_index) {
     global $all_widgets_by_services;
     return $all_widgets_by_services[$service_index]['widgets'][$widget_index]['name'];
@@ -178,6 +212,14 @@
               <a id=\"widget_".$service."_".$widget."\" class=\"fa fa-plus text-success mr-3 ml-3 fa-fw\"></a>
               ".get_widget_name($service, $widget)."
               <a id=\"preedit_widget_".$service."_".$widget."\" class=\"fa fa-edit float-right text-info fa-fw\"></a>
+              <div id=\"input_refresh_".$service."_".$widget."\" class=\"input-group\" style=\"display: none;\">
+                <span>Refresh Rate (s)</span>
+                <input class=\"form-field\" type=\"text\" placeholder=\"60\">
+              </div>
+              <div id=\"input_arg_".$service."_".$widget."\" class=\"input-group\" style=\"display: none;\">
+                <span>".get_widget_arg_name($service, $widget)."</span>
+                <input class=\"form-field\" type=\"text\" placeholder=\"".get_widget_arg_placeholder($service, $widget)."\">
+              </div>
             </div>
           </li>
         ";

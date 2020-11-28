@@ -83,6 +83,26 @@ body {
   line-height: 1.42857;
 }
 
+.form-field {
+  display: block;
+  width: 45%;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  border-width: 1px;
+  border-radius: 6px;
+  -webkit-appearance: none;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.5em;
+  width: 100%;
+}
+
 /*
 *
 * ==========================================

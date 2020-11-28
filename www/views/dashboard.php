@@ -36,7 +36,7 @@
 
 <body>
   <!-- Vertical navbar -->
-  <div class="vertical-nav bg-white" id="sidebar">
+  <div class="vertical-nav bg-white overflow-auto" id="sidebar">
     <div class="py-4 px-3 mb-4 bg-light">
       <div class="media d-flex align-items-center"><img
           src="https://www.pngkit.com/png/full/352-3522106_home-dashboard-alternate-home-loans-logo.png" alt="..."

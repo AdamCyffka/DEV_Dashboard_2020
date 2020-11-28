@@ -57,7 +57,7 @@ $(document).ready(function() {
     jQuery.ready();
   });
 
-  $(document).on("click", "#list_widgets a", function(event) {
+  $(document).on("click", "#list_widgets a[id^='widget_']", function(event) {
     $.post("../../scripts/dashboard.php",
       {
         widgetlist_button_id: event.target.id
@@ -76,6 +76,12 @@ $(document).ready(function() {
         }
       });
     });
+    jQuery.ready();
+  });
+
+  $(document).on("click", "#list_widgets a[id^='preedit_']", function(event) {
+    $("#" + event.target.id.replace("preedit_widget_", "input_arg_")).toggle();
+    $("#" + event.target.id.replace("preedit_widget_", "input_refresh_")).toggle();
     jQuery.ready();
   });
 
@@ -103,22 +109,15 @@ $(document).ready(function() {
 
       $.get("../../scripts/widgets.php?f=" + $data.display_function + "&arg=" + $data.arg)
       .done(function(res) {
-        $("#"+event.target.id.replace("refresh_", "widget_")).html();
+        $("#"+event.target.id.replace("refresh_", "widget_")).html($res);
       });
     });
     jQuery.ready();
   });
 
   $(document).on("click", "#sortablelist a[id^='edit_']", function(event) {
-    // $.post("../../scripts/dashboard.php",
-    //   {
-    //     edit_widget_button_id: event.target.id
-    //   },
-    // ).done(function(res) {
-    //   $data = JSON.parse(res);
-    //   $("#list_widgets").empty().html($data.widgets_list);
-    //   $("#"+event.target.id.replace("close_", "widget_")).remove();
-    // });
+    $("#" + event.target.id.replace("edit_", "input_arg_")).toggle();
+    $("#" + event.target.id.replace("edit_", "input_refresh_")).toggle();
     jQuery.ready();
   });
 

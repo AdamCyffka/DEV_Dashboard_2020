@@ -17,6 +17,8 @@
   }
 
   function display_weather_widget($id) {
+    $input_arg = str_replace("widget_", "input_arg_", $id);
+    $input_refresh = str_replace("widget_", "input_refresh_", $id);
     $close = str_replace("widget_", "close_", $id);
     $refresh = str_replace("widget_", "refresh_", $id);
     $edit = str_replace("widget_", "edit_", $id);
@@ -33,6 +35,14 @@
               <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\"></a>
               <a id=\"".$close."\" class=\"px-1 fas fa-times-circle text-danger\"></a>
             </span>
+            <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
+              <span>Refresh Rate (s)</span>
+              <input class=\"form-field\" type=\"text\" placeholder=\"60\">
+            </div>
+            <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
+              <span>".get_widget_arg_name($id)."</span>
+              <input class=\"form-field\" type=\"text\" placeholder=\"".get_widget_arg_placeholder($id)."\">
+            </div>
           </div>
           <div class=\"card-body\" style=\"padding-top: 0rem;\">
             <div class=\"row align-items-center no-gutters\">
@@ -57,6 +67,8 @@
   }
 
   function display_youtube_load_video_widget($id) {
+    $input_arg = str_replace("widget_", "input_arg_", $id);
+    $input_refresh = str_replace("widget_", "input_refresh_", $id);
     $close = str_replace("widget_", "close_", $id);
     $refresh = str_replace("widget_", "refresh_", $id);
     $edit = str_replace("widget_", "edit_", $id);
@@ -71,6 +83,14 @@
               <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\"></a>
               <a id=\"".$close."\" class=\"px-1 fas fa-times-circle text-danger\"></a>
             </span>
+            <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
+              <span>Refresh Rate (s)</span>
+              <input class=\"form-field\" type=\"text\" placeholder=\"60\">
+            </div>
+            <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
+              <span>".get_widget_arg_name($id)."</span>
+              <input class=\"form-field\" type=\"text\" placeholder=\"".get_widget_arg_placeholder($id)."\">
+            </div>
           </div>
           <div class=\"card-body\" style=\"padding-top: 0rem;\">
             <iframe width=\"100%\" height=\"100%\" src=\"".$arg."\" frameborder=\"0\"
@@ -84,6 +104,8 @@
   }
 
   function display_youtube_video_info_widget($id) {
+    $input_arg = str_replace("widget_", "input_arg_", $id);
+    $input_refresh = str_replace("widget_", "input_refresh_", $id);
     $close = str_replace("widget_", "close_", $id);
     $refresh = str_replace("widget_", "refresh_", $id);
     $edit = str_replace("widget_", "edit_", $id);
@@ -100,6 +122,14 @@
               <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\"></a>
               <a id=\"".$close."\" class=\"px-1 fas fa-times-circle text-danger\"></a>
             </span>
+            <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
+              <span>Refresh Rate (s)</span>
+              <input class=\"form-field\" type=\"text\" placeholder=\"60\">
+            </div>
+            <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
+              <span>".get_widget_arg_name($id)."</span>
+              <input class=\"form-field\" type=\"text\" placeholder=\"".get_widget_arg_placeholder($id)."\">
+            </div>
           </div>
           <div class=\"card-body\" style=\"padding-top: 0rem;\">
             <div class=\"row align-items-center no-gutters\">
@@ -146,6 +176,8 @@
   }
 
   function display_cinema_widget($id) {
+    $input_arg = str_replace("widget_", "input_arg_", $id);
+    $input_refresh = str_replace("widget_", "input_refresh_", $id);
     $close = str_replace("widget_", "close_", $id);
     $refresh = str_replace("widget_", "refresh_", $id);
     $edit = str_replace("widget_", "edit_", $id);
@@ -162,6 +194,14 @@
               <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\"></a>
               <a id=\"".$close."\" class=\"px-1 fas fa-times-circle text-danger\"></a>
             </span>
+            <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
+              <span>Refresh Rate (s)</span>
+              <input class=\"form-field\" type=\"text\" placeholder=\"60\">
+            </div>
+            <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
+              <span>".get_widget_arg_name($id)."</span>
+              <input class=\"form-field\" type=\"text\" placeholder=\"".get_widget_arg_placeholder($id)."\">
+            </div>
           </div>
           <div class=\"card-body\" style=\"padding-top: 0rem;\">
             <p class=\"text-center font-weight-bold text-dark\">".$data['name']."</p>
@@ -182,6 +222,8 @@
   }
 
   function display_steam_widget($id) {
+    $input_arg = str_replace("widget_", "input_arg_", $id);
+    $input_refresh = str_replace("widget_", "input_refresh_", $id);
     $close = str_replace("widget_", "close_", $id);
     $refresh = str_replace("widget_", "refresh_", $id);
     $edit = str_replace("widget_", "edit_", $id);
@@ -198,6 +240,14 @@
               <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\"></a>
               <a id=\"".$close."\" class=\"px-1 fas fa-times-circle text-danger\"></a>
             </span>
+            <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
+              <span>Refresh Rate (s)</span>
+              <input class=\"form-field\" type=\"text\" placeholder=\"60\">
+            </div>
+            <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
+              <span>".get_widget_arg_name($id)."</span>
+              <input class=\"form-field\" type=\"text\" placeholder=\"".get_widget_arg_placeholder($id)."\">
+            </div>
           </div>
           <div class=\"card-body\" style=\"padding-top: 0rem;\">
             <div class=\"row align-items-right no-gutters\">
@@ -213,6 +263,8 @@
   }
 
   function display_joke_widget($id) {
+    $input_arg = str_replace("widget_", "input_arg_", $id);
+    $input_refresh = str_replace("widget_", "input_refresh_", $id);
     $close = str_replace("widget_", "close_", $id);
     $refresh = str_replace("widget_", "refresh_", $id);
     $edit = str_replace("widget_", "edit_", $id);
@@ -229,6 +281,14 @@
               <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\"></a>
               <a id=\"".$close."\" class=\"px-1 fas fa-times-circle text-danger\"></a>
             </span>
+            <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
+              <span>Refresh Rate (s)</span>
+              <input class=\"form-field\" type=\"text\" placeholder=\"60\">
+            </div>
+            <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
+              <span>".get_widget_arg_name($id)."</span>
+              <input class=\"form-field\" type=\"text\" placeholder=\"".get_widget_arg_placeholder($id)."\">
+            </div>
           </div>
           <div class=\"card-body\" style=\"padding-top: 0rem;\">
             <div class=\"row align-items-right no-gutters\">
@@ -253,4 +313,37 @@
     return $html;
   }
 
+  function get_widget_arg_name($id) {
+    switch (str_replace("widget_", "", $id)[0]) {
+      case 1:
+        return "City";
+      case 2:
+        return "Video URL";
+      case 3:
+        return "Steam ID";
+      case 4:
+        return "Film Name";
+      case 5:
+        return "A Name";
+      default:
+        return "";
+    }
+  }
+
+  function get_widget_arg_placeholder($id) {
+    switch (str_replace("widget_", "", $id)[0]) {
+      case 1:
+        return "Paris";
+      case 2:
+        return "https://www.youtube.com/watch?v=nwsewSMWIas";
+      case 3:
+        return "Valipss";
+      case 4:
+        return "Avatar";
+      case 5:
+        return "Adam";
+      default:
+        return "";
+    }
+  }
 ?>
