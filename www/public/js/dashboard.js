@@ -6,12 +6,6 @@ function youtube_parser(url){
 
 
 $(document).ready(function() {
-  
-  // $('.grid').masonry({
-  //   itemSelector: '.grid-item',
-  //   columnWidth: '.grid-sizer',
-  //   percentPosition: true
-  // });
 
   $.post("../../scripts/dashboard.php",
     {
