@@ -27,12 +27,12 @@
       return $result;
     }
 
-    function steamWidget($value) {
+    function nasaWidget($value) {
       $api = new Api();
-      $steam = $api->callApi('GET', "https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=5BB9963627E6F058FD82D28B3C3C297B&steamids=$value");
-      // $object = json_decode($steam);
-      // $result= $object->weather[0]->description;
-      return $steam;
+      $steam = $api->callApi('GET', "https://api.nasa.gov/planetary/apod?api_key=pmYeETOEQGcqjDmzkdrDAPApOdp4TafLgUn5ENo9&hd=true@date=$value");
+      $object = json_decode($steam);
+      $result= $object->url;
+      return $result;
     }
 
     function moviesWidget($value) {

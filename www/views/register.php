@@ -1,16 +1,12 @@
 <?php
 
-  include('../scripts/fbconfig.php');
   include('../scripts/register.php');
-
 
   if (isset($_SESSION['userData'])) {
     if (isset($_SESSION['userData']['confirmation']) && ($_SESSION['userData']['confirmation']) == 1) {
       header('location: dashboard.php');
     }
   }
-
-  $loginUrl = $fb->getRedirectLoginHelper()->getLoginUrl("http://localhost:8080/scripts/fbconfig.php")
 
 ?>
 
@@ -65,9 +61,10 @@
 
           <p>or sign up with:</p>
 
-          <a href="<?php echo htmlspecialchars($loginUrl); ?>" class="mx-2" role="button"><i
+          <a href="../scripts/callbackFacebook.php" class="mx-2" role="button"><i
               class="fab fa-facebook-f light-blue-text"></i></a>
-          <a href="../scripts/callbackGoogle.php" class="mx-2" role="button"><i class="fa fa-google light-blue-text"></i></a>
+          <a href="../scripts/callbackGoogle.php" class="mx-2" role="button"><i
+              class="fa fa-google light-blue-text"></i></a>
 
         </form>
       </div>
