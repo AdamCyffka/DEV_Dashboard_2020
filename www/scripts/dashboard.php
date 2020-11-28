@@ -4,8 +4,11 @@
   // INIT
   $user_widgets_by_services = array();
   $all_widgets_by_services = array();
+  $user_widgets_args = array();
   store_user_widgets_by_services();
   store_all_widgets_by_services();
+  store_user_widgets_args();
+  update_widgets_args();
 
   // REQUESTS
   $data = array();
@@ -14,20 +17,34 @@
     update_widgets_list($ids[0], $ids[1]."_".$ids[2]);
     store_user_widgets_by_services();
     store_all_widgets_by_services();
+    store_user_widgets_args();
+    update_widgets_args();
     echo json_encode(array("widgets_list" => display_widgets_list(), "displayable_widgets" => get_displayable_widgets()));
     unset($_POST['widget_button_id']);
-  } if (isset($_POST['widgetlist_button_id'])) {
+  }
+  
+  if (isset($_POST['widgetlist_button_id'])) {
+    $refresh_rate = $_POST['refresh_rate'];
+    $arg = $_POST['arg'];
+
     $ids = explode("_", str_replace("widget_", "", $_POST['widgetlist_button_id']));
-    update_widgets_list($ids[0], $ids[1]."_".get_next_second_widget_id($ids[0], $ids[1]));
+    $new_button_id = get_next_second_widget_id($ids[0], $ids[1]);
+    update_widgets_list($ids[0], $ids[1]."_".$new_button_id);
     store_user_widgets_by_services();
     store_all_widgets_by_services();
-    echo json_encode(array("widgets_list" => display_widgets_list(), "displayable_widgets" => get_displayable_widgets()));
-    unset($_POST['widgetlist_button_id']);
-  } if (isset($_POST['service_button_id'])) {
+    store_user_widgets_args();
+    echo json_encode(array("widgets_list" => display_widgets_list(), "displayable_widgets" => get_displayable_widgets($ids[0], $ids[1]."_".$new_button_id, $refresh_rate, $arg)));
+    update_widgets_args();
+    unset($_POST['widgetlist_button_id'], $_POST['refresh_rate'], $_POST['arg']);
+  }
+  
+  if (isset($_POST['service_button_id'])) {
     update_services_list(str_replace("service_", "", $_POST['service_button_id']));
     store_user_widgets_by_services();
     store_all_widgets_by_services();
+    store_user_widgets_args();
     echo json_encode(array("services_list" => display_services_list(), "widgets_list" => display_widgets_list(), "displayable_widgets" => get_displayable_widgets()));
+    update_widgets_args();
     unset($_POST['service_button_id']);
   }
   
@@ -60,6 +77,26 @@
         break;
       $to_add = explode(",", $user_widgets[$value - 1]);
       $user_widgets_by_services[$value] = $to_add;
+    }
+  }
+
+  // get all user widgets args
+  function store_user_widgets_args() {
+    global $db;
+    global $user_widgets_args;
+
+    $user_widgets_args = array();
+    $sql = "SELECT * FROM user_instance_data WHERE user='".$_SESSION['userData']['id']."'";
+    $result = mysqli_query($db, $sql);
+    if ($result !== false && $result !== true) {
+      foreach ($result->fetch_all() as $key => $value) {
+        $user_widgets_args[$value[2]] = array_merge(
+          isset($user_widgets_args[$value[2]]) ? $user_widgets_args[$value[2]] : array(),
+          array($value[2] => array($value[3] => array("refresh_rate" => $value[4], "arg" => $value[5])))
+        );
+      }
+    } else {
+      echo mysqli_error($db);
     }
   }
 
@@ -214,7 +251,7 @@
               <a id=\"preedit_widget_".$service."_".$widget."\" class=\"fa fa-edit float-right text-info fa-fw\"></a>
               <div id=\"input_refresh_".$service."_".$widget."\" class=\"input-group\" style=\"display: none;\">
                 <span>Refresh Rate (s)</span>
-                <input class=\"form-field\" type=\"text\" placeholder=\"60\">
+                <input class=\"form-field\" type=\"number\" placeholder=\"60\" min=\"15\">
               </div>
               <div id=\"input_arg_".$service."_".$widget."\" class=\"input-group\" style=\"display: none;\">
                 <span>".get_widget_arg_name($service, $widget)."</span>
@@ -275,6 +312,34 @@
       echo mysqli_error($db);
   }
 
+  function update_widgets_args() {
+    global $db;
+    global $user_widgets_args;
+    $args = "";
+    
+    foreach ($user_widgets_args as $service_id => $service_data) {
+      foreach ($service_data as $index => $widget) {
+        foreach($widget as $widget_id => $widget_data) {
+          $sql = "SELECT COUNT(*) FROM user_instance_data WHERE user = '".$_SESSION['userData']['id']."' and service = '$service_id' and widget = '$widget_id'";
+          $result = mysqli_query($db, $sql);
+          if ($result !== false && mysqli_num_rows($result) == 1) {
+            $data = $result->fetch_all();
+            if ($data[0][0] == 1) {
+              $sql = "UPDATE user_instance_data SET refresh_rate = ".$widget_data['refresh_rate'].", arg = '".$widget_data['arg']."' WHERE user = '".$_SESSION['userData']['id']."' and service = '$service_id' and widget = '$widget_id'";
+            } else {
+              $sql = "INSERT INTO user_instance_data (user, service, widget, refresh_rate, arg) VALUES ('".$_SESSION['userData']['id']."', '$service_id', '$widget_id', ".$widget_data['refresh_rate'].", '".$widget_data['arg']."')";
+            }
+            $result = mysqli_query($db, $sql);
+            if ($result === false)
+              echo mysqli_error($db);
+          } else {
+            echo mysqli_error($db);
+          } 
+        }
+      }
+    }
+  }
+
   function get_widget_function($service_id, $widget_id) {
     switch ($service_id) {
       case 1:
@@ -295,14 +360,32 @@
     }
   }
 
-  function get_displayable_widgets() {
+  function get_displayable_widgets($service_id = -1, $widget_id = -1, $refresh_rate = -1, $arg = -1) {
     global $user_widgets_by_services;
+    global $user_widgets_args;
     $ret = array();
-
     foreach ($user_widgets_by_services as $service => $widgets) {
       foreach ($widgets as $key => $value) {
-        if ($value)
-        $ret["widget_".$service."_".$value."_widget"] = get_widget_function($service, $value);
+        if ($value) {
+          if ($service == $service_id && $value == $widget_id) {
+            $user_widgets_args[$service][explode("_", $value)[1]][$value]['refresh_rate'] = $refresh_rate;
+            $user_widgets_args[$service][explode("_", $value)[1]][$value]['arg'] = $arg;
+          }
+          if (isset($user_widgets_args[$service][explode("_", $value)[1]][$value])) {
+            $ret["widget_".$service."_".$value."_widget"] = array(
+              "function" => get_widget_function($service, $value),
+              "refresh_rate" => $user_widgets_args[$service][explode("_", $value)[1]][$value]['refresh_rate'],
+              "arg" => $user_widgets_args[$service][explode("_", $value)[1]][$value]['arg']
+            );
+          }
+          // $ret["debug_".$service."_".$value."_widget"] = array(
+          //   "service" => $service,
+          //   "value" => $value,
+          //   "service_id" => $service_id,
+          //   "widget_id" => $widget_id,
+          //   "user_widgets_args" => $user_widgets_args[$service][explode("_", $value)[1]][$value]
+          // ); 
+        }
       }
     }
     return $ret;

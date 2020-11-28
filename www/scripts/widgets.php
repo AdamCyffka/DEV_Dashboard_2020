@@ -12,17 +12,18 @@
 
   if (isset($_GET['f'])) {
     if (in_array($_GET['f'], $functions)) {
-      echo $_GET['f'](isset($_GET['arg']) ? $_GET['arg'] : "");
+      echo $_GET['f'](isset($_GET['id']) ? $_GET['id'] : "",
+                      isset($_GET['refresh_rate']) ? $_GET['refresh_rate'] : "",
+                      isset($_GET['arg']) ? $_GET['arg'] : "");
     }
   }
 
-  function display_weather_widget($id) {
+  function display_weather_widget($id, $refresh_rate, $arg) {
     $input_arg = str_replace("widget_", "input_arg_", $id);
     $input_refresh = str_replace("widget_", "input_refresh_", $id);
     $close = str_replace("widget_", "close_", $id);
     $refresh = str_replace("widget_", "refresh_", $id);
     $edit = str_replace("widget_", "edit_", $id);
-    $arg = "Dubai";
     $parser = new widgetsParser();
     $data = $parser->weatherWidget($arg);
     $html = "
@@ -37,7 +38,7 @@
             </span>
             <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
               <span>Refresh Rate (s)</span>
-              <input class=\"form-field\" type=\"text\" placeholder=\"60\">
+              <input class=\"form-field\" type=\"number\" placeholder=\"60\" min=\"15\">
             </div>
             <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
               <span>".get_widget_arg_name($id)."</span>
@@ -66,13 +67,12 @@
     return $html;
   }
 
-  function display_youtube_load_video_widget($id) {
+  function display_youtube_load_video_widget($id, $refresh_rate, $arg) {
     $input_arg = str_replace("widget_", "input_arg_", $id);
     $input_refresh = str_replace("widget_", "input_refresh_", $id);
     $close = str_replace("widget_", "close_", $id);
     $refresh = str_replace("widget_", "refresh_", $id);
     $edit = str_replace("widget_", "edit_", $id);
-    $arg = "https://www.youtube.com/embed/EAh4L3_HTJY";
     $html = "
       <div id=\"".$id."\" class=\"col-xl-6 mb-4\" style=\"min-height: 400px;\">
         <div class=\"card shadow border-left-warning h-100\">
@@ -85,7 +85,7 @@
             </span>
             <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
               <span>Refresh Rate (s)</span>
-              <input class=\"form-field\" type=\"text\" placeholder=\"60\">
+              <input class=\"form-field\" type=\"number\" placeholder=\"60\" min=\"15\">
             </div>
             <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
               <span>".get_widget_arg_name($id)."</span>
@@ -93,7 +93,7 @@
             </div>
           </div>
           <div class=\"card-body\" style=\"padding-top: 0rem;\">
-            <iframe width=\"100%\" height=\"100%\" src=\"".$arg."\" frameborder=\"0\"
+            <iframe width=\"100%\" height=\"100%\" src=\"https://youtube.com/embed/".$arg."\" frameborder=\"0\"
               allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\"
               allowfullscreen></iframe>
           </div>
@@ -103,13 +103,12 @@
     return $html;
   }
 
-  function display_youtube_video_info_widget($id) {
+  function display_youtube_video_info_widget($id, $refresh_rate, $arg) {
     $input_arg = str_replace("widget_", "input_arg_", $id);
     $input_refresh = str_replace("widget_", "input_refresh_", $id);
     $close = str_replace("widget_", "close_", $id);
     $refresh = str_replace("widget_", "refresh_", $id);
     $edit = str_replace("widget_", "edit_", $id);
-    $arg = "EAh4L3_HTJY";
     $parser = new widgetsParser();
     $data = $parser->youtubeInfoWidget($arg);
     $html = "
@@ -124,7 +123,7 @@
             </span>
             <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
               <span>Refresh Rate (s)</span>
-              <input class=\"form-field\" type=\"text\" placeholder=\"60\">
+              <input class=\"form-field\" type=\"number\" placeholder=\"60\" min=\"15\">
             </div>
             <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
               <span>".get_widget_arg_name($id)."</span>
@@ -175,13 +174,12 @@
     return $html;
   }
 
-  function display_cinema_widget($id) {
+  function display_cinema_widget($id, $refresh_rate, $arg) {
     $input_arg = str_replace("widget_", "input_arg_", $id);
     $input_refresh = str_replace("widget_", "input_refresh_", $id);
     $close = str_replace("widget_", "close_", $id);
     $refresh = str_replace("widget_", "refresh_", $id);
     $edit = str_replace("widget_", "edit_", $id);
-    $arg = "bienvenue-chez-les-ch-tis"; //mettre des tirets pour les espaces
     $parser = new widgetsParser();
     $data = $parser->moviesWidget($arg);
     $html = "
@@ -196,7 +194,7 @@
             </span>
             <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
               <span>Refresh Rate (s)</span>
-              <input class=\"form-field\" type=\"text\" placeholder=\"60\">
+              <input class=\"form-field\" type=\"number\" placeholder=\"60\" min=\"15\">
             </div>
             <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
               <span>".get_widget_arg_name($id)."</span>
@@ -221,13 +219,12 @@
     return $html;
   }
 
-  function display_steam_widget($id) {
+  function display_steam_widget($id, $refresh_rate, $arg) {
     $input_arg = str_replace("widget_", "input_arg_", $id);
     $input_refresh = str_replace("widget_", "input_refresh_", $id);
     $close = str_replace("widget_", "close_", $id);
     $refresh = str_replace("widget_", "refresh_", $id);
     $edit = str_replace("widget_", "edit_", $id);
-    $arg = "Valipss";
     $parser = new widgetsParser();
     $data = $parser->steamWidget($arg);
     $html = "
@@ -242,7 +239,7 @@
             </span>
             <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
               <span>Refresh Rate (s)</span>
-              <input class=\"form-field\" type=\"text\" placeholder=\"60\">
+              <input class=\"form-field\" type=\"number\" placeholder=\"60\" min=\"15\">
             </div>
             <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
               <span>".get_widget_arg_name($id)."</span>
@@ -262,13 +259,12 @@
     return $html;
   }
 
-  function display_joke_widget($id) {
+  function display_joke_widget($id, $refresh_rate, $arg) {
     $input_arg = str_replace("widget_", "input_arg_", $id);
     $input_refresh = str_replace("widget_", "input_refresh_", $id);
     $close = str_replace("widget_", "close_", $id);
     $refresh = str_replace("widget_", "refresh_", $id);
     $edit = str_replace("widget_", "edit_", $id);
-    $arg = "Adam";
     $parser = new widgetsParser();
     $data = $parser->chuckNorrisWidget($arg);
     $html = "
@@ -283,7 +279,7 @@
             </span>
             <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
               <span>Refresh Rate (s)</span>
-              <input class=\"form-field\" type=\"text\" placeholder=\"60\">
+              <input class=\"form-field\" type=\"number\" placeholder=\"60\" min=\"15\">
             </div>
             <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
               <span>".get_widget_arg_name($id)."</span>
