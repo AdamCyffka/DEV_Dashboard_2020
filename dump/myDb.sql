@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : jeu. 26 nov. 2020 à 17:46
+-- Généré le : ven. 27 nov. 2020 à 21:07
 -- Version du serveur :  8.0.22
 -- Version de PHP : 7.4.11
 
@@ -51,7 +51,7 @@ INSERT INTO `service` (`id`, `name`) VALUES
 
 CREATE TABLE `user` (
   `id` int NOT NULL,
-  `confirmationkey` varchar(20) DEFAULT NULL,
+  `token` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `confirmation` int NOT NULL DEFAULT '0',
   `oauth_uid` varchar(255) DEFAULT NULL,
   `username` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
@@ -72,7 +72,6 @@ CREATE TABLE `user_data` (
   `services` text,
   `widgets` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 
 -- --------------------------------------------------------
 

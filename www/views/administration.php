@@ -7,6 +7,10 @@
 
   include('../scripts/dbconfig.php');
 
+  if (isset($_SESSION['userData']['user_type']) && ($_SESSION['userData']['user_type']) == 'user') {
+    header('location: dashboard.php');
+  }
+
   $query = "SELECT * FROM user";
 
   // Search by username
@@ -66,13 +70,24 @@
         <td><?= $data['date'] ?></td>
         <td>
           <?php if ($data['user_type'] === 'user'): ?>
-            <span class="badge badge-info"><?= $data['user_type'] ?></span>
+            <span class="badge badge-success"><?= $data['user_type'] ?></span>
           <?php elseif ($data['user_type'] === 'admin'): ?>
-            <span class="badge badge-danger"><?= $data['user_type'] ?></span>
+            <span class="badge badge-info"><?= $data['user_type'] ?></span>
+          <?php elseif ($data['user_type'] === 'superadmin'): ?>
+            <span class="badge badge-warning"><?= $data['user_type'] ?></span>
           <?php endif; ?>
         </td>
         <td>
-          <a href="<?php echo "../scripts/delete.php?id=".$data['id'];?>" type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+          <?php if ($_SESSION['userData']['user_type'] === 'superadmin'): ?>
+            <a href="<?php echo "../scripts/delete.php?id=".$data['id'];?>" type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+            <a href="<?php echo "../scripts/setSuperadmin.php?id=".$data['id'];?>" type="button" class="btn btn-warning"><i class="fas fa-users-cog"></i></a>
+            <a href="<?php echo "../scripts/setAdmin.php?id=".$data['id'];?>" type="button" class="btn btn-info"><i class="fas fa-user-cog"></i></a>
+            <a href="<?php echo "../scripts/SetUser.php?id=".$data['id'];?>" type="button" class="btn btn-success"><i class="fas fa-user-shield"></i></a>
+          <?php elseif ($_SESSION['userData']['user_type'] === 'admin'): ?>
+            <a href="<?php echo "../scripts/delete.php?id=".$data['id'];?>" type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+            <a href="<?php echo "../scripts/setAdmin.php?id=".$data['id'];?>" type="button" class="btn btn-info"><i class="fas fa-user-cog"></i></a>
+            <a href="<?php echo "../scripts/SetUser.php?id=".$data['id'];?>" type="button" class="btn btn-success"><i class="fas fa-user-shield"></i></a>
+          <?php endif; ?>
         </td>
       </tr>
       <?php endforeach; ?>

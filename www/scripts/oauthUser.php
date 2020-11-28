@@ -20,10 +20,10 @@
       $res = mysqli_query($this->db, $select_qry);
       if ($res !== false and mysqli_num_rows($res) > 0) {
         // Update user details if it is already exists in the table
-        $qry = "UPDATE user SET ".$qry_body." WHERE `oauth_uid` = '".$userInfo['id']."'";
+        $qry = "UPDATE user SET confirmation = 1, token = '', ".$qry_body." WHERE `oauth_uid` = '".$userInfo['id']."'";
       } else {
         // Insert into table if user not exists in the table
-        $qry = "INSERT INTO user SET ".$qry_body."";
+        $qry = "INSERT INTO user SET confirmation = 1, token = '', ".$qry_body."";
       }
       $result = mysqli_query($this->db, $qry);
       $query = "SELECT * FROM user";
@@ -34,10 +34,10 @@
       $_SESSION['userData']['id'] = isset($this->data['id']) ? $this->data['id'] : null;
       $_SESSION['userData']['oauth_uid'] = $userInfo['id'];
       $_SESSION['userData']['name'] = $userInfo['name'];
-      $_SESSION['userData']['email'] = $userInfo['email'];
       $user_id = $this->data['id'];
       $widget = "INSERT INTO user_data (`user`, `widgets`) VALUES ('$user_id', ';;;;')";
-      $result_widget = mysqli_query($this->db, $widget);
+      mysqli_query($this->db, $widget);
+      $_SESSION['userData']['confirmation'] = 1;
       header('location: ../views/dashboard.php');
       exit();
     }
