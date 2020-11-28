@@ -2,12 +2,17 @@
 
   include('../scripts/fbconfig.php');
   include('../scripts/register.php');
+  include('../scripts/widgetsParser.php');
+
+  // $api = new WidgetsParser();
+  // $test = $api->steamWidget('STEAM_0:1:49845126');
+  // print_r($test);
   
-  if (isset($_SESSION['userData'])) {
-    if (isset($_SESSION['userData']['confirmation']) && ($_SESSION['userData']['confirmation']) == 1) {
-      header('location: dashboard.php');
-    }
-  }
+  // if (isset($_SESSION['userData'])) {
+  //   if (isset($_SESSION['userData']['confirmation']) && ($_SESSION['userData']['confirmation']) == 1) {
+  //     header('location: dashboard.php');
+  //   }
+  // }
 
   $loginUrl = $fb->getRedirectLoginHelper()->getLoginUrl("http://localhost:8080/scripts/fbconfig.php");
 

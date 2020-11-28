@@ -7,11 +7,11 @@
 
   include('../scripts/dbconfig.php');
 
-  if (isset($_SESSION['userData'])) {
-    if (isset($_SESSION['userData']['confirmation']) && ($_SESSION['userData']['confirmation']) == 1) {
-      header('location: dashboard.php');
-    }
-  }
+  // if (isset($_SESSION['userData'])) {
+  //   if (isset($_SESSION['userData']['confirmation']) && ($_SESSION['userData']['confirmation']) == 1) {
+  //     header('location: dashboard.php');
+  //   }
+  // }
 
   if (isset($_SESSION['userData']['user_type']) && ($_SESSION['userData']['user_type']) == 'user') {
     header('location: dashboard.php');
@@ -88,11 +88,11 @@
             <a href="<?php echo "../scripts/delete.php?id=".$data['id'];?>" type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
             <a href="<?php echo "../scripts/setSuperadmin.php?id=".$data['id'];?>" type="button" class="btn btn-warning"><i class="fas fa-users-cog"></i></a>
             <a href="<?php echo "../scripts/setAdmin.php?id=".$data['id'];?>" type="button" class="btn btn-info"><i class="fas fa-user-cog"></i></a>
-            <a href="<?php echo "../scripts/SetUser.php?id=".$data['id'];?>" type="button" class="btn btn-success"><i class="fas fa-user-shield"></i></a>
+            <a href="<?php echo "../scripts/setUser.php?id=".$data['id'];?>" type="button" class="btn btn-success"><i class="fas fa-user-shield"></i></a>
           <?php elseif ($_SESSION['userData']['user_type'] === 'admin'): ?>
             <a href="<?php echo "../scripts/delete.php?id=".$data['id'];?>" type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
             <a href="<?php echo "../scripts/setAdmin.php?id=".$data['id'];?>" type="button" class="btn btn-info"><i class="fas fa-user-cog"></i></a>
-            <a href="<?php echo "../scripts/SetUser.php?id=".$data['id'];?>" type="button" class="btn btn-success"><i class="fas fa-user-shield"></i></a>
+            <a href="<?php echo "../scripts/setUser.php?id=".$data['id'];?>" type="button" class="btn btn-success"><i class="fas fa-user-shield"></i></a>
           <?php endif; ?>
         </td>
       </tr>
