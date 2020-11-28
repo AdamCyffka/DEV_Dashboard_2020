@@ -4,11 +4,11 @@ function youtube_parser(url){
   return (match&&match[7].length==11)? match[7] : false;
 }
 
-$('.grid').masonry({
-  itemSelector: '.grid-item',
-  columnWidth: '.grid-sizer',
-  percentPosition: true
-});
+// $('.grid').masonry({
+//   itemSelector: '.grid-item',
+//   columnWidth: '.grid-sizer',
+//   percentPosition: true
+// });
 
 $(document).ready(function() {
 
