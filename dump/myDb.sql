@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : ven. 27 nov. 2020 à 21:07
+-- Généré le : sam. 28 nov. 2020 à 17:04
 -- Version du serveur :  8.0.22
 -- Version de PHP : 7.4.11
 
@@ -76,6 +76,21 @@ CREATE TABLE `user_data` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `user_instance_data`
+--
+
+CREATE TABLE `user_instance_data` (
+  `id` int NOT NULL,
+  `user` int NOT NULL,
+  `service` int NOT NULL,
+  `widget` tinytext NOT NULL,
+  `refresh_rate` int NOT NULL,
+  `arg` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `widget`
 --
 
@@ -123,6 +138,12 @@ ALTER TABLE `user_data`
   ADD PRIMARY KEY (`user`);
 
 --
+-- Index pour la table `user_instance_data`
+--
+ALTER TABLE `user_instance_data`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -136,6 +157,12 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `user_instance_data`
+--
+ALTER TABLE `user_instance_data`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 

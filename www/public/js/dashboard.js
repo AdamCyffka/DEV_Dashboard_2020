@@ -4,11 +4,6 @@ function youtube_parser(url){
   return (match&&match[7].length==11)? match[7] : false;
 }
 
-// $('.grid').masonry({
-//   itemSelector: '.grid-item',
-//   columnWidth: '.grid-sizer',
-//   percentPosition: true
-// });
 
 $(document).ready(function() {
 
@@ -21,9 +16,12 @@ $(document).ready(function() {
     $("#list_widgets").empty().html($data.widgets_list);
 
     $.each($data.displayable_widgets, function(key, value) {
-      $.get("../../scripts/widgets.php?f=" + value + "&arg=" + key)
+      var new_arg = (value.function == "display_youtube_load_video_widget" || value.function == "display_youtube_video_info_widget") ? youtube_parser(value.arg) : value.arg;
+      $.get("../../scripts/widgets.php?f=" + value.function + "&id=" + key + "&refresh=" + value.refresh_rate + "&arg=" + new_arg)
       .done(function(res) {
         $("#sortablelist").append(res);
+        $("#" + key + " #" + key.replace("widget_", "input_refresh_") + " input").val(value.refresh_rate);
+        $("#" + key + " #" + key.replace("widget_", "input_arg_") + " input").val(new_arg);
       });
     });
   });
@@ -42,7 +40,6 @@ $(document).ready(function() {
       $("#sortablelist div[id$='_widget']").each(function() {
         var service_id = event.target.id.replace("service_", "");
         var ids = Array.from(this.id.replace("widget_", "").replace("_widget", ""));
-        console.log(event.target.id);
         if (ids[0] == service_id);
           this.remove();
       });
@@ -52,9 +49,12 @@ $(document).ready(function() {
       } else {
         $.each($data.displayable_widgets, function(key, value) {
           if (!$("#sortablelist #"+key).length) {
-            $.get("../../scripts/widgets.php?f=" + value + "&arg=" + key)
+            var new_arg = (value.function == "display_youtube_load_video_widget" || value.function == "display_youtube_video_info_widget") ? youtube_parser(value.arg) : value.arg;
+            $.get("../../scripts/widgets.php?f=" + value.function + "&id=" + key + "&refresh=" + value.refresh_rate + "&arg=" + new_arg)
             .done(function(res) {
               $("#sortablelist").append(res);
+              $("#" + key + " #" + key.replace("widget_", "input_refresh_") + " input").val(value.refresh_rate);
+              $("#" + key + " #" + key.replace("widget_", "input_arg_") + " input").val(new_arg);
             });
           }
         });
@@ -62,22 +62,26 @@ $(document).ready(function() {
     });
     jQuery.ready();
   });
-
+  
   $(document).on("click", "#list_widgets a[id^='widget_']", function(event) {
+    jQuery.ready();
     $.post("../../scripts/dashboard.php",
       {
-        widgetlist_button_id: event.target.id
+        widgetlist_button_id: event.target.id,
+        refresh_rate: ($("#" + event.target.id.replace("widget_", "input_refresh_") + " input").val()) ? $("#" + event.target.id.replace("widget_", "input_refresh_") + " input").val() : 60,
+        arg: ($("#" + event.target.id.replace("widget_", "input_arg_") + " input").val()) ? $("#" + event.target.id.replace("widget_", "input_arg_") + " input").val() : $("#" + event.target.id.replace("widget_", "input_arg_") + " input").attr('placeholder')
       },
     ).done(function(res) {
       $data = JSON.parse(res);
-      $("#list_widgets").empty().html($data.widgets_list);
 
-      console.log($data.displayable_widgets);
       $.each($data.displayable_widgets, function(key, value) {
         if (!$("#sortablelist #"+key).length) {
-          $.get("../../scripts/widgets.php?f=" + value + "&arg=" + key)
+          var new_arg = (value.function == "display_youtube_load_video_widget" || value.function == "display_youtube_video_info_widget") ? youtube_parser(value.arg) : value.arg;
+          $.get("../../scripts/widgets.php?f=" + value.function + "&id=" + key + "&refresh=" + value.refresh_rate + "&arg=" + new_arg)
           .done(function(res) {
             $("#sortablelist").append(res);
+            $("#" + key + " #" + key.replace("widget_", "input_refresh_") + " input").val(value.refresh_rate);
+            $("#" + key + " #" + key.replace("widget_", "input_arg_") + " input").val(new_arg);
           });
         }
       });
@@ -98,25 +102,7 @@ $(document).ready(function() {
       },
     ).done(function(res) {
       $data = JSON.parse(res);
-      $("#list_widgets").empty().html($data.widgets_list);
       $("#"+event.target.id.replace("close_", "widget_")).remove();
-    });
-    jQuery.ready();
-  });
-
-  $(document).on("click", "#sortablelist a[id^='refresh_']", function(event) {
-    $.post("../../scripts/dashboard.php",
-      {
-        refresh_widget_widget_button_id: event.target.id
-      },
-    ).done(function(res) {
-      $data = JSON.parse(res);
-      $("#list_widgets").empty().html($data.widgets_list);
-
-      $.get("../../scripts/widgets.php?f=" + $data.display_function + "&arg=" + $data.arg)
-      .done(function(res) {
-        $("#"+event.target.id.replace("refresh_", "widget_")).html($res);
-      });
     });
     jQuery.ready();
   });
