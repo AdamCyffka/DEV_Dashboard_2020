@@ -7,7 +7,7 @@
   if ($_SESSION['userData']['id'] !== $id) {
     $query = "DELETE FROM user WHERE id = $id";
     $query_data = "DELETE FROM user_data WHERE user = $id";
-  
+
     $result = mysqli_query($db, $query);
     $result_data = mysqli_query($db, $query_data);
   

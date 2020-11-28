@@ -1,10 +1,5 @@
 <?php
 
-  // var_dump($_SESSION['userData']['user_type']);
-  // if ($_SESSION['userData']['user_type'] === 'admin') {
-  //   header('location: dashboard.php');
-  // }
-
   include('../scripts/dbconfig.php');
 
   // if (isset($_SESSION['userData'])) {

@@ -17,7 +17,6 @@
     $email = mysqli_real_escape_string($db, $_POST['email']);
     $password1 = mysqli_real_escape_string($db, $_POST['password1']);
     $password2 = mysqli_real_escape_string($db, $_POST['password2']);
-    $user_type = "user";
 
     if ($password1 != $password2) {
       array_push($errors, "The two passwords do not match.");
@@ -37,7 +36,16 @@
       $query = "SELECT * FROM user WHERE username = '$username'";
       $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) == 0) { // If no previous user is using this username
-        $sql = "INSERT INTO user (`username`, `email`, `password`, `user_type`, `token`) VALUES ('$username', '$email', '$password', '$user_type','$token')";
+        $table = "SELECT COUNT(*) FROM user";
+        $result = mysqli_query($db, $table);
+        if ($result !== false && mysqli_num_rows($result) == 1) {
+          $data = $result->fetch_all();
+          if ($data[0][0] == 0) {
+            $sql = "INSERT INTO user (`username`, `email`, `password`, `user_type`, `token`) VALUES ('$username', '$email', '$password', 'superadmin','$token')";
+          } else {
+            $sql = "INSERT INTO user (`username`, `email`, `password`, `user_type`, `token`) VALUES ('$username', '$email', '$password', 'user','$token')";
+          }
+        }
         $result = mysqli_query($db, $sql);
         if (!$result) {
           echo 'Query Failed';
@@ -50,7 +58,7 @@
           }
           $_SESSION['userData']['id'] = isset($data['id']) ? $data['id'] : null;
           $_SESSION['userData']['name'] = $username;
-          $_SESSION['userData']['user_type'] = $user_type;
+          $_SESSION['userData']['user_type'] = isset($data['user_type']) ? $data['user_type'] : null;
           $user_id = $data['id'];
           $widget = "INSERT INTO user_data (`user`, `widgets`) VALUES ('$user_id', ';;;;')";
           $result_widget = mysqli_query($db, $widget);

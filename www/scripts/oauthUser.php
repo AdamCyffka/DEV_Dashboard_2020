@@ -16,6 +16,12 @@
               `user_type` = 'user',
               `email` = '".$userInfo['email']."'";
 
+      $qry_body3 = "
+              `username` = '".$userInfo['name']."',
+              `oauth_uid` = '".$userInfo['id']."',
+              `user_type` = 'superadmin',
+              `email` = '".$userInfo['email']."'";
+
       $qry_body2= "
               `username` = '".$userInfo['name']."',
               `oauth_uid` = '".$userInfo['id']."',
@@ -28,7 +34,16 @@
         $qry = "UPDATE user SET confirmation = 1, token = '', ".$qry_body2." WHERE `email` = '".$userInfo['email']."'";
       } else {
         // Insert into table if user not exists in the table
-        $qry = "INSERT INTO user SET confirmation = 1, token = '', ".$qry_body."";
+        $table = "SELECT COUNT(*) FROM user";
+        $result = mysqli_query($this->db, $table);
+        if ($result !== false && mysqli_num_rows($result) == 1) {
+          $data = $result->fetch_all();
+          if ($data[0][0] == 0) {
+            $qry = "INSERT INTO user SET confirmation = 1, token = '', ".$qry_body3."";
+          } else {
+            $qry = "INSERT INTO user SET confirmation = 1, token = '', ".$qry_body."";
+          }
+        }
       }
       $result = mysqli_query($this->db, $qry);
       $query = "SELECT * FROM user";
@@ -60,6 +75,12 @@
               `oauth_uid` = '".$userInfo['id']."',
               `email` = '".$userInfo['email']."'";
 
+      $qry_body3 = "
+              `username` = '".$userInfo['name']."',
+              `oauth_uid` = '".$userInfo['id']."',
+              `user_type` = 'superadmin',
+              `email` = '".$userInfo['email']."'";
+
       $select_qry = "SELECT * FROM user WHERE `email` = '".$userInfo['email']."'";
       $res = mysqli_query($this->db, $select_qry);
       if ($res !== false and mysqli_num_rows($res) > 0) {
@@ -67,7 +88,16 @@
         $qry = "UPDATE user SET confirmation = 1, token = '', ".$qry_body2." WHERE `email` = '".$userInfo['email']."'";
       } else {
         // Insert into table if user not exists in the table
-        $qry = "INSERT INTO user SET confirmation = 1, token = '', ".$qry_body."";
+        $table = "SELECT COUNT(*) FROM user";
+        $result = mysqli_query($this->db, $table);
+        if ($result !== false && mysqli_num_rows($result) == 1) {
+          $data = $result->fetch_all();
+          if ($data[0][0] == 0) {
+            $qry = "INSERT INTO user SET confirmation = 1, token = '', ".$qry_body3."";
+          } else {
+            $qry = "INSERT INTO user SET confirmation = 1, token = '', ".$qry_body."";
+          }
+        }
       }
       $result = mysqli_query($this->db, $qry);
       $query = "SELECT * FROM user";
