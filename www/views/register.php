@@ -67,7 +67,7 @@
 
           <a href="<?php echo htmlspecialchars($loginUrl); ?>" class="mx-2" role="button"><i
               class="fab fa-facebook-f light-blue-text"></i></a>
-          <!-- <a href="/auth/google" class="mx-2" role="button"><i class="fa fa-google light-blue-text"></i></a> -->
+          <a href="" class="mx-2" role="button"><i class="fa fa-google light-blue-text"></i></a>
 
         </form>
       </div>

@@ -2,7 +2,7 @@
 
   include('../scripts/fbconfig.php');
   include('../scripts/register.php');
-
+  
   if (isset($_SESSION['userData'])) {
     if (isset($_SESSION['userData']['confirmation']) && ($_SESSION['userData']['confirmation']) == 1) {
       header('location: dashboard.php');
@@ -54,7 +54,7 @@
 
           <a href="<?php echo htmlspecialchars($loginUrl); ?>" class="mx-2" role="button"><i
               class="fab fa-facebook-f light-blue-text"></i></a>
-          <!-- <a href="" class="mx-2" role="button"><i class="fa fa-google light-blue-text"></i></a> -->
+          <a href="../scripts/callbackGoogle.php" class="mx-2" role="button"><i class="fa fa-google light-blue-text"></i></a>
 
         </form>
       </div>
