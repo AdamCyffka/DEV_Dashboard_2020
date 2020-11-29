@@ -61,8 +61,8 @@
 
           <p>or sign up with:</p>
 
-          <a href="../scripts/callbackFacebook.php" class="mx-2" role="button"><i
-              class="fab fa-facebook-f light-blue-text"></i></a>
+          <a href="../scripts/callbackTwitch.php" class="mx-2" role="button"><i
+              class="fab fa-twitch light-blue-text"></i></a>
           <a href="../scripts/callbackGoogle.php" class="mx-2" role="button"><i
               class="fa fa-google light-blue-text"></i></a>
           <a href="../scripts/callbackDiscord.php" class="mx-2" role="button"><i

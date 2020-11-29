@@ -47,9 +47,9 @@
   <h1>Administration</h1>
   <form action="" class="mb-4">
     <div class="form-group">
-      <input type="text" class="form-control" name="q" placeholder="Rechercher un utilisateur" value="<?= htmlentities($_GET['q'] ?? null) ?>">
+      <input type="text" class="form-control" name="q" placeholder="Search for a user" value="<?= htmlentities($_GET['q'] ?? null) ?>">
     </div>
-    <button class="btn btn-primary">Rechercher</button>
+    <button class="btn btn-primary">Search</button>
   </form>
   <table class="table table-striped">
     <thead>
@@ -59,7 +59,7 @@
         <th>Email</th>
         <th>Creation date</th>
         <th>Role</th>
-        <th>Action</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>

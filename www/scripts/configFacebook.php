@@ -3,10 +3,10 @@
   require_once '../libraries/hybridauth/src/autoload.php';
 
   $config = [
-    'callback' => 'http://localhost:8080/scripts/callbackFacebook.php',
+    'callback' => 'http://localhost:8080/scripts/callbackTwitch.php',
     'keys' => [
-      'id' => '670367266996537',
-      'secret' => 'b163eef587a59136bc0f1070326db86b'
+      'id' => 'fdmwsirygpv7rdta8ssr07rqno73ej',
+      'secret' => '1seeqt50mkzk007p7lns80639uzli6'
     ],
     'authorize_url_parameters' => [
       'approval_prompt' => 'force', // to pass only when you need to acquire a new refresh token.
@@ -14,6 +14,6 @@
     ]
   ];
   
-  $adapter = new Hybridauth\Provider\Facebook($config);
+  $adapter = new Hybridauth\Provider\TwitchTV($config);
 
 ?>
