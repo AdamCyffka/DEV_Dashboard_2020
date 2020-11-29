@@ -46,7 +46,7 @@
         }
       }
       $result = mysqli_query($this->db, $qry);
-      $query = "SELECT * FROM user";
+      $query = "SELECT * FROM user WHERE oauth_uid = '".$userInfo['id']."'";
       $result = mysqli_query($this->db, $query);
       foreach ($result->fetch_assoc() as $key => $value) {
         $this->data[$key] = $value;
