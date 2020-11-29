@@ -29,8 +29,8 @@
 
     function nasaWidget($value) {
       $api = new Api();
-      $steam = $api->callApi('GET', "https://api.nasa.gov/planetary/apod?api_key=pmYeETOEQGcqjDmzkdrDAPApOdp4TafLgUn5ENo9&hd=true&date=$value");
-      $object = json_decode($steam);
+      $nasa = $api->callApi('GET', "https://api.nasa.gov/planetary/apod?api_key=pmYeETOEQGcqjDmzkdrDAPApOdp4TafLgUn5ENo9&hd=true&date=$value");
+      $object = json_decode($nasa);
       $result= $object->url;
       return $result;
     }
