@@ -387,13 +387,6 @@
               "arg" => $user_widgets_args[$service][explode("_", $value)[1]][$value]['arg']
             );
           }
-          // $ret["debug_".$service."_".$value."_widget"] = array(
-          //   "service" => $service,
-          //   "value" => $value,
-          //   "service_id" => $service_id,
-          //   "widget_id" => $widget_id,
-          //   "user_widgets_args" => $user_widgets_args[$service][explode("_", $value)[1]][$value]
-          // ); 
         }
       }
     }

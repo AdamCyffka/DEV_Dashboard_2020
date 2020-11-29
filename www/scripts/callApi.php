@@ -1,8 +1,4 @@
 <?php
-
-  // Method: POST, PUT, GET etc
-  // Data: array("param" => "value") ==> index.php?param=value
-
   class Api {
   
     function callApi($method, $url, $data = false) {

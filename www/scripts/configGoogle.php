@@ -10,7 +10,7 @@
     ],
     'scope' => 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
     'authorize_url_parameters' => [
-      'approval_prompt' => 'force', // to pass only when you need to acquire a new refresh token.
+      'approval_prompt' => 'force',
       'access_type' => 'offline'
     ]
   ];

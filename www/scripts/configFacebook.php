@@ -9,7 +9,7 @@
       'secret' => '1seeqt50mkzk007p7lns80639uzli6'
     ],
     'authorize_url_parameters' => [
-      'approval_prompt' => 'force', // to pass only when you need to acquire a new refresh token.
+      'approval_prompt' => 'force',
       'access_type' => 'offline'
     ]
   ];
