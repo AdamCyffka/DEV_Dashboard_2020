@@ -82,7 +82,7 @@
         <p class="lead text-white mb-0">Find here your favorites and useful widgets.</p>
       </div>
       <div class="text-right">
-        <a href="#" class="text-right font-weight-bold mb-0">Refresh all</a></br>
+        <a href="#" onClick="window.location.reload();" class="text-right font-weight-bold mb-0">Refresh all</a></br>
         <?php if ($_SESSION['userData']['user_type'] === 'superadmin'): ?>
           <a href="administration.php" class="text-right font-weight-bold mb-0">Administration</a>
         <?php elseif ($_SESSION['userData']['user_type'] === 'admin'): ?>

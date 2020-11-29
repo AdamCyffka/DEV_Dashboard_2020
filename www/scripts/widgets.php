@@ -30,10 +30,10 @@
       <div id=\"".$id."\" class=\"col-xl-3 mb-4\">
         <div class=\"card shadow border-left-warning\">
           <div class=\"card-header text-dark font-weight-bold mb-3\">
-            Weather
+            City Weather
             <span class=\"float-right\">
               <a id=\"".$edit."\" class=\"px-1 fas fa-edit text-info\"></a>
-              <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\"></a>
+              <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\" title=\"display_weather_widget\"></a>
               <a id=\"".$close."\" class=\"px-1 fas fa-times-circle text-danger\"></a>
             </span>
             <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
@@ -77,15 +77,15 @@
       <div id=\"".$id."\" class=\"col-xl-6 mb-4\" style=\"min-height: 400px;\">
         <div class=\"card shadow border-left-warning h-100\">
           <div class=\"text-dark card-header font-weight-bold mb-3\">
-            Youtube video
+            Load video
             <span class=\"float-right\">
               <a id=\"".$edit."\" class=\"px-1 fas fa-edit text-info\"></a>
-              <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\"></a>
+              <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\" title=\"display_youtube_load_video_widget\"></a>
               <a id=\"".$close."\" class=\"px-1 fas fa-times-circle text-danger\"></a>
             </span>
             <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
               <span>Refresh Rate (s)</span>
-              <input class=\"form-field\" type=\"number\" placeholder=\"60\" min=\"15\">
+              <input class=\"form-field\" type=\"number\" placeholder=\"600\" min=\"15\">
             </div>
             <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
               <span>".get_widget_arg_name($id)."</span>
@@ -115,15 +115,15 @@
       <div id=\"".$id."\" class=\"col-xl-3 mb-4\">
         <div class=\"card shadow border-left-warning\">
           <div class=\"card-header text-dark font-weight-bold mb-3\">
-            Youtube information
+            Get Video Views
             <span class=\"float-right\">
               <a id=\"".$edit."\" class=\"px-1 fas fa-edit text-info\"></a>
-              <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\"></a>
+              <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\" title=\"display_youtube_video_info_widget\"></a>
               <a id=\"".$close."\" class=\"px-1 fas fa-times-circle text-danger\"></a>
             </span>
             <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
               <span>Refresh Rate (s)</span>
-              <input class=\"form-field\" type=\"number\" placeholder=\"60\" min=\"15\">
+              <input class=\"form-field\" type=\"number\" placeholder=\"120\" min=\"15\">
             </div>
             <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
               <span>".get_widget_arg_name($id)."</span>
@@ -186,15 +186,15 @@
       <div id=\"".$id."\" class=\"col-xl-6 mb-4\">
         <div class=\"card shadow border-left-warning\">
           <div class=\"card-header text-dark font-weight-bold mb-3\">
-            Cinema
+            Get Movie Infos
             <span class=\"float-right\">
               <a id=\"".$edit."\" class=\"px-1 fas fa-edit text-info\"></a>
-              <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\"></a>
+              <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\" title=\"display_cinema_widget\"></a>
               <a id=\"".$close."\" class=\"px-1 fas fa-times-circle text-danger\"></a>
             </span>
             <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
               <span>Refresh Rate (s)</span>
-              <input class=\"form-field\" type=\"number\" placeholder=\"60\" min=\"15\">
+              <input class=\"form-field\" type=\"number\" placeholder=\"600\" min=\"15\">
             </div>
             <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
               <span>".get_widget_arg_name($id)."</span>
@@ -231,15 +231,15 @@
       <div id=\"".$id."\" class=\"col-xl-5 mb-4\">
         <div class=\"card shadow border-left-warning\">
           <div class=\"card-header text-dark font-weight-bold mb-3\">
-            Nasa : APOD
+            APOD
             <span class=\"float-right\">
               <a id=\"".$edit."\" class=\"px-1 fas fa-edit text-info\"></a>
-              <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\"></a>
+              <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\" title=\"display_nasa_widget\"></a>
               <a id=\"".$close."\" class=\"px-1 fas fa-times-circle text-danger\"></a>
             </span>
             <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
               <span>Refresh Rate (s)</span>
-              <input class=\"form-field\" type=\"number\" placeholder=\"60\" min=\"15\">
+              <input class=\"form-field\" type=\"number\" placeholder=\"600\" min=\"15\">
             </div>
             <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
               <span>".get_widget_arg_name($id)."</span>
@@ -271,15 +271,15 @@
       <div id=\"".$id."\" class=\"col-xl-3 mb-4\">
         <div class=\"card shadow border-left-warning\">
           <div class=\"card-header text-dark font-weight-bold mb-3\">
-            Joke
+            Get a Joke
             <span class=\"float-right\">
               <a id=\"".$edit."\" class=\"px-1 fas fa-edit text-info\"></a>
-              <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\"></a>
+              <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\" title=\"display_joke_widget\"></a>
               <a id=\"".$close."\" class=\"px-1 fas fa-times-circle text-danger\"></a>
             </span>
             <div id=\"".$input_refresh."\" class=\"input-group\" style=\"display: none;\">
               <span>Refresh Rate (s)</span>
-              <input class=\"form-field\" type=\"number\" placeholder=\"60\" min=\"15\">
+              <input class=\"form-field\" type=\"number\" placeholder=\"600\" min=\"15\">
             </div>
             <div id=\"".$input_arg."\" class=\"input-group\" style=\"display: none;\">
               <span>".get_widget_arg_name($id)."</span>

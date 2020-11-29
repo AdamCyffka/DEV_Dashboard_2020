@@ -14,7 +14,16 @@ function refresh_this_widget(func, id) {
   .done(function(res) {
     $("#" + id).replaceWith(res);
     $("#" + id + " #" + id.replace("widget_", "input_refresh_") + " input").val(refresh_rate);
-    $("#" + id + " #" + id.replace("widget_", "input_arg_") + " input").val(new_arg);
+    $("#" + id + " #" + id.replace("widget_", "input_arg_") + " input").val(arg);
+
+    $.post("../../scripts/dashboard.php",
+      {
+        widget_update: true,
+        widgetlist_button_id: id,
+        refresh_rate: refresh_rate,
+        arg: arg
+      },
+    )
   });
   clearInterval(timers["inter_" + id]);
   $("#" + id).ready(function() {
@@ -22,7 +31,6 @@ function refresh_this_widget(func, id) {
       refresh_this_widget(func, id)
     }, ((refresh_rate >= 15) ? refresh_rate : 15) * 1000);
   });
-  console.log("in");
 }
 
 $(document).ready(function() {
@@ -41,7 +49,7 @@ $(document).ready(function() {
       .done(function(res) {
         $("#sortablelist").append(res);
         $("#" + key + " #" + key.replace("widget_", "input_refresh_") + " input").val(value.refresh_rate);
-        $("#" + key + " #" + key.replace("widget_", "input_arg_") + " input").val(new_arg);
+        $("#" + key + " #" + key.replace("widget_", "input_arg_") + " input").val(value.arg);
         $("#" + key).ready(function() {
           timers["inter_" + key] = setInterval(function() {
             refresh_this_widget(value.function, key)
@@ -79,7 +87,7 @@ $(document).ready(function() {
             .done(function(res) {
               $("#sortablelist").append(res);
               $("#" + key + " #" + key.replace("widget_", "input_refresh_") + " input").val(value.refresh_rate);
-              $("#" + key + " #" + key.replace("widget_", "input_arg_") + " input").val(new_arg);
+              $("#" + key + " #" + key.replace("widget_", "input_arg_") + " input").val(value.arg);
             });
             clearInterval(timers["inter_" + key]);
             $("#" + key).ready(function() {
@@ -99,7 +107,7 @@ $(document).ready(function() {
     $.post("../../scripts/dashboard.php",
       {
         widgetlist_button_id: event.target.id,
-        refresh_rate: ($("#" + event.target.id.replace("widget_", "input_refresh_") + " input").val()) ? $("#" + event.target.id.replace("widget_", "input_refresh_") + " input").val() : 60,
+        refresh_rate: ($("#" + event.target.id.replace("widget_", "input_refresh_") + " input").val()) ? $("#" + event.target.id.replace("widget_", "input_refresh_") + " input").val() : $("#" + event.target.id.replace("widget_", "input_refresh_") + " input").attr("placeholder"),
         arg: ($("#" + event.target.id.replace("widget_", "input_arg_") + " input").val()) ? $("#" + event.target.id.replace("widget_", "input_arg_") + " input").val() : $("#" + event.target.id.replace("widget_", "input_arg_") + " input").attr('placeholder')
       },
     ).done(function(res) {
@@ -112,7 +120,7 @@ $(document).ready(function() {
           .done(function(res) {
             $("#sortablelist").append(res);
             $("#" + key + " #" + key.replace("widget_", "input_refresh_") + " input").val(value.refresh_rate);
-            $("#" + key + " #" + key.replace("widget_", "input_arg_") + " input").val(new_arg);
+            $("#" + key + " #" + key.replace("widget_", "input_arg_") + " input").val(value.arg);
           });
           clearInterval(timers["inter_" + key]);
           $("#" + key).ready(function() {
@@ -148,6 +156,11 @@ $(document).ready(function() {
   $(document).on("click", "#sortablelist a[id^='edit_']", function(event) {
     $("#" + event.target.id.replace("edit_", "input_arg_")).toggle();
     $("#" + event.target.id.replace("edit_", "input_refresh_")).toggle();
+    jQuery.ready();
+  });
+
+  $(document).on("click", "#sortablelist a[id^='refresh_']", function(event) {
+    refresh_this_widget($("#" + event.target.id).attr("title"), event.target.id.replace("refresh_", "widget_"));
     jQuery.ready();
   });
 });

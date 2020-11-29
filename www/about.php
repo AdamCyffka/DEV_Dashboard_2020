@@ -5,70 +5,71 @@ $date = new DateTime();
 $timeStamp = $date->getTimestamp();
 
 ?>
-
+<pre>
 {
   "client": {
-    "host": <?php echo $ipaddress ?>
+    "host": "<?php echo $ipaddress ?>"
   },
   "server": {
-    "current_time":  <?php echo $timeStamp ?>,
+    "current_time": <?php echo $timeStamp ?>,
     "services": [{
-        "name": "weather",
+        "name": "Weather",
         "widgets": [{
-            "name": "weatherWidget",
+            "name": "City Weather",
             "description": "Display temperature for a city with small description.",
             "params": [{
-                "name": "cityWeather",
+                "name": "city",
                 "type": "string"
             }]
         }]
     }, {
-        "name": "youtube",
+        "name": "Youtube",
         "widgets": [{
-            "name": "loadVideo",
+            "name": "Load Video",
             "description": "Load video by Id.",
             "params": [{
-                "name": "videoId",
+                "name": "youtube_url",
                 "type": "string"
             }]
         }, {
-            "name": "getVideoInfos",
+            "name": "Get Video Views",
             "description": "Get video likes & dislikes by Id.",
             "params": [{
-                "name": "videoId",
+                "name": "youtube_url",
                 "type": "string"
             }]
         }]
     }, {
-        "name": "nasa",
+        "name": "Nasa",
         "widgets": [{
             "name": "APOD",
             "description": "The Astronomy Picture of the Day.",
             "params": [{
                 "name": "day",
-                "type": "date (YYYY-MM-DD)"
-            }]
-        }]
-    }, {
-        "name": "cinema",
-        "widgets": [{
-            "name": "getMovieInformation",
-            "description": "Get movie information by name.",
-            "params": [{
-                "name": "movieName",
                 "type": "string"
             }]
         }]
     }, {
-        "name": "joke",
+        "name": "Cinema",
         "widgets": [{
-            "name": "getChuckNorrisJoke",
-            "description": "Get Chuck Norris joke by word.",
+            "name": "Get Movie Infos",
+            "description": "Get movie information by name.",
             "params": [{
-                "name": "jokeWord",
+                "name": "name",
+                "type": "string"
+            }]
+        }]
+    }, {
+        "name": "Get a Joke",
+        "widgets": [{
+            "name": "Get A Joke",
+            "description": "Get Chuck Norris' joke by word.",
+            "params": [{
+                "name": "word",
                 "type": "string"
             }]
         }]
     }]
   }
 }
+</pre>

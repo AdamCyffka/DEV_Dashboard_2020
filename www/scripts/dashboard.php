@@ -28,13 +28,22 @@
     $arg = $_POST['arg'];
 
     $ids = explode("_", str_replace("widget_", "", $_POST['widgetlist_button_id']));
-    $new_button_id = get_next_second_widget_id($ids[0], $ids[1]);
-    update_widgets_list($ids[0], $ids[1]."_".$new_button_id);
-    store_user_widgets_by_services();
-    store_all_widgets_by_services();
-    store_user_widgets_args();
-    echo json_encode(array("widgets_list" => display_widgets_list(), "displayable_widgets" => get_displayable_widgets($ids[0], $ids[1]."_".$new_button_id, $refresh_rate, $arg)));
-    update_widgets_args();
+    if (isset($_POST['widget_update']) && $_POST['widget_update'] == true) {
+      store_user_widgets_by_services();
+      store_all_widgets_by_services();
+      store_user_widgets_args();
+      echo json_encode(array("widgets_list" => display_widgets_list(), "displayable_widgets" => get_displayable_widgets($ids[0], $ids[1]."_".$ids[2], $refresh_rate, $arg)));
+      update_widgets_args();
+      unset($_POST['widget_update']);
+    } else {
+      $new_button_id = get_next_second_widget_id($ids[0], $ids[1]);
+      update_widgets_list($ids[0], $ids[1]."_".$new_button_id);
+      store_user_widgets_by_services();
+      store_all_widgets_by_services();
+      store_user_widgets_args();
+      echo json_encode(array("widgets_list" => display_widgets_list(), "displayable_widgets" => get_displayable_widgets($ids[0], $ids[1]."_".$new_button_id, $refresh_rate, $arg)));
+      update_widgets_args();
+    }
     unset($_POST['widgetlist_button_id'], $_POST['refresh_rate'], $_POST['arg']);
   }
   
@@ -251,7 +260,7 @@
               <a id=\"preedit_widget_".$service."_".$widget."\" class=\"fa fa-edit float-right text-info fa-fw\"></a>
               <div id=\"input_refresh_".$service."_".$widget."\" class=\"input-group\" style=\"display: none;\">
                 <span>Refresh Rate (s)</span>
-                <input class=\"form-field\" type=\"number\" placeholder=\"60\" min=\"15\">
+                <input class=\"form-field\" type=\"number\" placeholder=\"120\" min=\"15\">
               </div>
               <div id=\"input_arg_".$service."_".$widget."\" class=\"input-group\" style=\"display: none;\">
                 <span>".get_widget_arg_name($service, $widget)."</span>
