@@ -316,7 +316,7 @@
       case 2:
         return "Video URL";
       case 3:
-        return "Day (YYYY-MM-DD)";
+        return "YYYY-MM-DD";
       case 4:
         return "Film Name";
       case 5:
