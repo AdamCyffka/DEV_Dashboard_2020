@@ -14,7 +14,7 @@
 
     // Create an instance of the OauthUser class
     $oauth_user_obj = new OauthUser($db);
-    $userData = $oauth_user_obj->verifyGoogleUser($userInfo);
+    $userData = $oauth_user_obj->verifyUser($userInfo);
   } catch (Exception $e) {
     echo $e->getMessage() ;
   }

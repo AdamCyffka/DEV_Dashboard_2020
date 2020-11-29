@@ -54,6 +54,10 @@
               class="fab fa-facebook-f light-blue-text"></i></a>
           <a href="../scripts/callbackGoogle.php" class="mx-2" role="button"><i
               class="fa fa-google light-blue-text"></i></a>
+          <a href="../scripts/callbackDiscord.php" class="mx-2" role="button"><i
+              class="fab fa-discord light-blue-text"></i></a>
+              <a href="../scripts/callbackSpotify.php" class="mx-2" role="button"><i
+              class="fab fa-spotify light-blue-text"></i></a>
 
         </form>
       </div>
