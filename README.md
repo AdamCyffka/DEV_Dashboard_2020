@@ -1,5 +1,7 @@
 # Dashboard
 
+![image](https://i.imgur.com/VdU3BpV.png)
+
 The purpose of this project is to implement a web application that works like Netvibes.
 
 ## Build and run
@@ -35,6 +37,18 @@ Cinema
 
 Get a joke
 * Get a joke from Chuck Norris.
+
+## Preview
+
+![image](https://i.imgur.com/5SuIKwi.png)
+![image](https://i.imgur.com/EZlizs0.png)
+![image](https://i.imgur.com/ZjHeM8t.png)
+![image](https://i.imgur.com/k0XHfT0.png)
+
+## **Authors**
+
+- adam.cyffka@epitech.eu
+- valentin1.masson@epitech.eu
 
 ## License
 
