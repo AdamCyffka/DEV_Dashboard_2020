@@ -1,9 +1,29 @@
+var timers = []
+
 function youtube_parser(url){
   var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
   var match = url.match(regExp);
   return (match&&match[7].length==11)? match[7] : false;
 }
 
+function refresh_this_widget(func, id) {
+  var refresh_rate = $("#" + id + " #" + id.replace("widget_", "input_refresh_") + " input").val();
+  var arg = $("#" + id + " #" + id.replace("widget_", "input_arg_") + " input").val();
+  var new_arg = (func == "display_youtube_load_video_widget" || func == "display_youtube_video_info_widget") ? youtube_parser(arg) : arg;
+  $.get("../../scripts/widgets.php?f=" + func + "&id=" + id + "&refresh=" + refresh_rate + "&arg=" + new_arg)
+  .done(function(res) {
+    $("#" + id).replaceWith(res);
+    $("#" + id + " #" + id.replace("widget_", "input_refresh_") + " input").val(refresh_rate);
+    $("#" + id + " #" + id.replace("widget_", "input_arg_") + " input").val(new_arg);
+  });
+  clearInterval(timers["inter_" + id]);
+  $("#" + id).ready(function() {
+    timers["inter_" + id] = setInterval(function() {
+      refresh_this_widget(func, id)
+    }, ((refresh_rate >= 15) ? refresh_rate : 15) * 1000);
+  });
+  console.log("in");
+}
 
 $(document).ready(function() {
 
@@ -22,6 +42,11 @@ $(document).ready(function() {
         $("#sortablelist").append(res);
         $("#" + key + " #" + key.replace("widget_", "input_refresh_") + " input").val(value.refresh_rate);
         $("#" + key + " #" + key.replace("widget_", "input_arg_") + " input").val(new_arg);
+        $("#" + key).ready(function() {
+          timers["inter_" + key] = setInterval(function() {
+            refresh_this_widget(value.function, key)
+          }, ((value.refresh_rate >= 15) ? value.refresh_rate : 15) * 1000);
+        });
       });
     });
   });
@@ -56,6 +81,12 @@ $(document).ready(function() {
               $("#" + key + " #" + key.replace("widget_", "input_refresh_") + " input").val(value.refresh_rate);
               $("#" + key + " #" + key.replace("widget_", "input_arg_") + " input").val(new_arg);
             });
+            clearInterval(timers["inter_" + key]);
+            $("#" + key).ready(function() {
+              timers["inter_" + key] = setInterval(function() {
+                refresh_this_widget(value.function, key)
+              }, ((value.refresh_rate >= 15) ? value.refresh_rate : 15) * 1000);
+            });
           }
         });
       }
@@ -83,6 +114,12 @@ $(document).ready(function() {
             $("#" + key + " #" + key.replace("widget_", "input_refresh_") + " input").val(value.refresh_rate);
             $("#" + key + " #" + key.replace("widget_", "input_arg_") + " input").val(new_arg);
           });
+          clearInterval(timers["inter_" + key]);
+          $("#" + key).ready(function() {
+            timers["inter_" + key] = setInterval(function() {
+              refresh_this_widget(value.function, key)
+            }, ((value.refresh_rate >= 15) ? value.refresh_rate : 15) * 1000);
+          });
         }
       });
     });
@@ -103,7 +140,8 @@ $(document).ready(function() {
     ).done(function(res) {
       $data = JSON.parse(res);
       $("#"+event.target.id.replace("close_", "widget_")).remove();
-    });
+    })
+    clearInterval(timers["inter_" + event.target.id.replace("close_", "widget_")]);
     jQuery.ready();
   });
 
@@ -112,5 +150,4 @@ $(document).ready(function() {
     $("#" + event.target.id.replace("edit_", "input_refresh_")).toggle();
     jQuery.ready();
   });
-
 });
