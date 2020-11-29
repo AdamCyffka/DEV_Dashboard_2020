@@ -39,7 +39,7 @@ CREATE TABLE `service` (
 INSERT INTO `service` (`id`, `name`) VALUES
 (1, 'Weather'),
 (2, 'Youtube'),
-(3, 'Steam'),
+(3, 'Nasa'),
 (4, 'Cinema'),
 (5, 'Get a Joke');
 
@@ -111,7 +111,7 @@ INSERT INTO `widget` (`id`, `service`, `name`, `description`, `arg_count`, `args
 (1, 1, 'City weather', 'Display temperature for a city with small description.', 1, 'Paris'),
 (1, 2, 'Load Video', 'Load a Youtube video by Id.', 1, 'https://www.youtube.com/watch?v=RI86k9rsGZ0'),
 (2, 2, 'Get Video Views', 'Get a Youtube video\'s views by Id.', 1, 'https://www.youtube.com/watch?v=RI86k9rsGZ0'),
-(1, 3, 'Player Infos', 'Get a Steam player informations by Id.', 1, 'lightningvalipss'),
+(1, 3, 'APOD', 'The Astronomy Picture of the day.', 1, '2020-11-29'),
 (1, 4, 'Get Movie Infos', 'Get movie\'s informations by name.', 1, 'Forest Gump'),
 (1, 5, 'Get a Joke', 'Get a Chuck Norris\' joke by word.', 1, 'prout');
 

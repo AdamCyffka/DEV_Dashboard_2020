@@ -32,7 +32,7 @@ $timeStamp = $date->getTimestamp();
                 "type": "string"
             }]
         }, {
-            "name": "getVideoLikesDislikes",
+            "name": "getVideoInfos",
             "description": "Get video likes & dislikes by Id.",
             "params": [{
                 "name": "videoId",
@@ -40,13 +40,13 @@ $timeStamp = $date->getTimestamp();
             }]
         }]
     }, {
-        "name": "steam",
+        "name": "nasa",
         "widgets": [{
-            "name": "getPlayerInformation",
-            "description": "Get player information by Id.",
+            "name": "APOD",
+            "description": "The Astronomy Picture of the Day.",
             "params": [{
-                "name": "playerId",
-                "type": "string"
+                "name": "day",
+                "type": "date (YYYY-MM-DD)"
             }]
         }]
     }, {

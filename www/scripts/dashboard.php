@@ -158,7 +158,7 @@
       case 2:
         return "Video URL";
       case 3:
-        return "Steam ID";
+        return "Day (YYYY-MM-DD)";
       case 4:
         return "Film Name";
       case 5:
@@ -175,7 +175,7 @@
       case 2:
         return "https://www.youtube.com/watch?v=nwsewSMWIas";
       case 3:
-        return "Valipss";
+        return "2020-11-29";
       case 4:
         return "Avatar";
       case 5:
@@ -202,7 +202,7 @@
       case 2:
         return "fa-youtube ";
       case 3:
-        return "fa-steam ";
+        return "fa-rocket ";
       case 4:
         return "fa-film ";
       case 5:
@@ -350,7 +350,7 @@
         else if ($widget_id[0] == 2)
           return "display_youtube_video_info_widget";
       case 3:
-        return "display_steam_widget";
+        return "display_nasa_widget";
       case 4:
         return "display_cinema_widget";
       case 5:

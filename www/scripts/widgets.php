@@ -6,7 +6,7 @@
     "display_youtube_load_video_widget",
     "display_youtube_video_info_widget",
     "display_cinema_widget",
-    "display_steam_widget",
+    "display_nasa_widget",
     "display_joke_widget"
   );
 
@@ -219,19 +219,19 @@
     return $html;
   }
 
-  function display_steam_widget($id, $refresh_rate, $arg) {
+  function display_nasa_widget($id, $refresh_rate, $arg) {
     $input_arg = str_replace("widget_", "input_arg_", $id);
     $input_refresh = str_replace("widget_", "input_refresh_", $id);
     $close = str_replace("widget_", "close_", $id);
     $refresh = str_replace("widget_", "refresh_", $id);
     $edit = str_replace("widget_", "edit_", $id);
     $parser = new widgetsParser();
-    $data = $parser->steamWidget($arg);
+    $data = $parser->nasaWidget($arg);
     $html = "
-      <div id=\"".$id."\" class=\"col-xl-3 mb-4\">
+      <div id=\"".$id."\" class=\"col-xl-5 mb-4\">
         <div class=\"card shadow border-left-warning\">
           <div class=\"card-header text-dark font-weight-bold mb-3\">
-            Steam
+            Nasa : APOD
             <span class=\"float-right\">
               <a id=\"".$edit."\" class=\"px-1 fas fa-edit text-info\"></a>
               <a id=\"".$refresh."\" class=\"px-1 fas fa-sync text-success\"></a>
@@ -249,7 +249,7 @@
           <div class=\"card-body\" style=\"padding-top: 0rem;\">
             <div class=\"row align-items-right no-gutters\">
               <div class=\"col-auto\" style=\"padding-top: 1rem;\">
-                ".$data."
+                <img src=\"".$data."\" width=\"100%\">
               </div>
             </div>
           </div>
@@ -316,7 +316,7 @@
       case 2:
         return "Video URL";
       case 3:
-        return "Steam ID";
+        return "Day (YYYY-MM-DD)";
       case 4:
         return "Film Name";
       case 5:
@@ -333,7 +333,7 @@
       case 2:
         return "https://www.youtube.com/watch?v=nwsewSMWIas";
       case 3:
-        return "Valipss";
+        return "2020-11-29";
       case 4:
         return "Avatar";
       case 5:
