@@ -3,10 +3,6 @@
   include('../scripts/register.php');
   include('../scripts/widgetsParser.php');
 
-  // $api = new WidgetsParser();
-  // $test = $api->nasaWidget(''); // YYYY-MM-DD
-  // print_r($test);
-  
   if (isset($_SESSION['userData'])) {
     if (isset($_SESSION['userData']['confirmation']) && ($_SESSION['userData']['confirmation']) == 1) {
       header('location: dashboard.php');
