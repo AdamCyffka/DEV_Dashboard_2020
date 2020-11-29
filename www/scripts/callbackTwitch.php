@@ -9,7 +9,7 @@
     $userProfile = $adapter->getUserProfile();
     $userInfo = array();
     $userInfo['email'] = $userProfile->email;
-    $userInfo['name'] = $userProfile->firstName;
+    $userInfo['name'] = $userProfile->displayName;
     $userInfo['id'] = $userProfile->identifier;
 
     // Create an instance of the OauthUser class
