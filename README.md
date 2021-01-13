@@ -48,8 +48,8 @@ Get a joke
 
 ## **Authors**
 
-- adam.cyffka@epitech.eu
-- valentin1.masson@epitech.eu
+* [Adam Cyffka](https://github.com/AdamCyffka)
+* [Valentin Masson](https://github.com/Valipss)
 
 ## License
 
